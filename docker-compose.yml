@@ -5,12 +5,20 @@ services:
     image: mongo:3.2.4
     ports:
     - "27017:27017"
+    
   db-ui:
     image: mongo-express:0.30.43
     environment:
-     - ME_CONFIG_BASICAUTH_USER="devoxx"
+     - ME_CONFIG_BASICAUTH_USER="labdocker"
      - ME_CONFIG_BASICAUTH_PASSWORD="foobar"
     ports:
      - "8081:8081"
+    links:
+     - db:mongo
+     
+  words:
+    build: words/
+    ports:
+     - "8080:8080"
     links:
      - db:mongo

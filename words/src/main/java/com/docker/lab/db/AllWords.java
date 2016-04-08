@@ -15,7 +15,7 @@ public abstract class AllWords {
 
     public AllWords(String collectionName) {
         // see https://github.com/bguerout/jongo/issues/289
-        DB db = new MongoClient("192.168.64.11:27017").getDB("lab-docker");
+        DB db = new MongoClient("mongo:27017").getDB("lab-docker");
         Jongo jongo = new Jongo(db);
         collection = jongo.getCollection(collectionName);
         collection.ensureIndex("{name:1}");

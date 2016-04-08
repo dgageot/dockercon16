@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>codestory</groupId>
-    <artifactId>backend</artifactId>
+    <artifactId>words</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <prerequisites>
@@ -19,7 +19,7 @@
     </properties>
 
     <build>
-        <finalName>backend</finalName>
+        <finalName>words</finalName>
 
         <pluginManagement>
             <plugins>
