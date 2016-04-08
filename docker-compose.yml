@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  db:
+    image: mongo:3.2.4
+  db-ui:
+    image: mongo-express
+    environment:
+     - ME_CONFIG_BASICAUTH_USER="devoxx"
+     - ME_CONFIG_BASICAUTH_PASSWORD="foobar"
+    ports:
+     - "8081:8081"
+    links:
+     - db:mongo
