@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="en" ng-app="labApp">
+<head>
     <meta charset="utf-8">
     <title>Docker Lab - Cadavres exquis</title>
     <link rel="stylesheet" href="style.css">
-    <script src="app.js"></script>
-  </head>
-  <body>
-    Hello World!
-  </body>
+</head>
+
+<body ng-controller="LabCtrl">
+<div class="sentence">
+    <span class="word noun">{{noun1}}</span>
+    <span class="word adjective">{{adjective1}}</span>
+    <span class="word verb">{{verb}}</span>
+    <span class="word noun">{{noun2}}</span>
+    <span class="word adjective">{{adjective2}}</span>
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+<script src="app.js"></script>
 </html>

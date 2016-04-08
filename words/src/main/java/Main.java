@@ -3,6 +3,7 @@ import com.docker.lab.db.AllNouns;
 import com.docker.lab.db.AllVerbs;
 import com.docker.lab.db.Db;
 import net.codestory.http.WebServer;
+import net.codestory.http.filters.log.*;
 
 import java.util.List;
 import java.util.Random;
@@ -17,6 +18,7 @@ public class Main {
     new Db().init();
 
     new WebServer().configure(routes -> routes
+    .filter(LogRequestFilter.class)
       .get("/verb", () -> {
         List<String> verbs = allVerbs.all();
         return verbs.get(random.nextInt(verbs.size()));

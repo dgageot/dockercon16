@@ -1,11 +1,20 @@
 version: '2'
 
 services:
-  db:
-    image: mongo:3.2.4
+  web:
+    image: dgageot/web
     ports:
-    - "27017:27017"
-    
+     - "80:80"
+    links:
+     - words:words
+
+  words:
+    image: dgageot/words
+    ports:
+     - "8080:8080"
+    links:
+     - db:mongo
+
   db-ui:
     image: mongo-express:0.30.43
     environment:
@@ -15,10 +24,8 @@ services:
      - "8081:8081"
     links:
      - db:mongo
-     
-  words:
-    build: words/
+
+  db:
+    image: mongo:3.2.4
     ports:
-     - "8080:8080"
-    links:
-     - db:mongo
+    - "27017:27017"
