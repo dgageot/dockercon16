@@ -3,20 +3,33 @@ version: '2'
 services:
   web:
     build: web
+    # image: dgageot/lab-web
     ports:
      - "80:80"
+    links:
+     - dispatcher:words
+
+  dispatcher:
+    build: dispatcher
+    # image: dgageot/lab-dispatcher
+    ports:
+     - "8080:8080"
     links:
      - words:words
 
   words:
     build: words
+    # image: dgageot/lab-words
     ports:
-     - "8080:8080"
+     - "8080:8888"
     links:
      - db:mongo
 
   db-ui:
     image: mongo-express:0.30.43
+    environment:
+     - ME_CONFIG_BASICAUTH_USER="labdocker"
+     - ME_CONFIG_BASICAUTH_PASSWORD="foobar"
     ports:
      - "8081:8081"
     links:
