@@ -1,26 +1,42 @@
 body {
     text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.ng-cloak {
+    display: none !important;
 }
 
 .sentence {
-    margin: 30px auto 0 auto;
+    margin: 100px auto 0 auto;
 }
 
 .word {
+    display: inline-block;
+    font-family: Arial, serif;
     font-size: 24px;
-    border: 3px solid;
-    padding: 10px;
-    margin: 0 5px;
+    border: 2px solid;
+    padding: 15px;
+    margin: 0 5px 10px 5px;
+    color: white;
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3);
 }
 
 .noun {
-    border-color: dodgerblue;
+    background-color: dodgerblue;
+    border-color: #1e83f1;
+    transform: rotate(1deg);
 }
 
 .verb {
-    border-color: orangered;
+    background-color: orangered;
+    border-color: #e84000;
+    transform: rotate(1deg);
 }
 
 .adjective {
-    border-color: forestgreen;
+    background-color: forestgreen;
+    border-color: #1c721c;
+    transform: rotate(-1deg);
 }

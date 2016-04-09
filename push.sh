@@ -7,12 +7,12 @@ docker build -t dgageot/lab-web .
 docker push dgageot/lab-web
 popd
 
-pushd dispatcher/
-docker build -t dgageot/lab-dispatcher .
-docker push dgageot/lab-dispatcher
+pushd words-dispatcher/
+docker build -t dgageot/lab-words-dispatcher .
+docker push dgageot/lab-words-dispatcher
 popd
 
-pushd words
-docker build -t dgageot/lab-words .
-docker push dgageot/lab-words
+pushd words-java
+docker build -t dgageot/lab-words-java .
+docker push dgageot/lab-words-java
 popd

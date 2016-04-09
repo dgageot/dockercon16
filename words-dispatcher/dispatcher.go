@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", forward("http://words:8888"))
+	http.HandleFunc("/", forward("http://words-java:8080"))
 	http.ListenAndServe(":8080", nil)
 }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="labApp">
+<html lang="en" ng-app="lab">
 <head>
     <meta charset="utf-8">
     <title>Docker Lab - Cadavres exquis</title>
@@ -7,7 +7,7 @@
 </head>
 
 <body ng-controller="LabCtrl">
-<div class="sentence">
+<div class="sentence" class="ngCloak">
     <span class="word noun">{{noun1}}</span>
     <span class="word adjective">{{adjective1}}</span>
     <span class="word verb">{{verb}}</span>
@@ -16,6 +16,6 @@
 </div>
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+<script src="angular.min.js"></script>
 <script src="app.js"></script>
 </html>

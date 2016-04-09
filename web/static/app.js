@@ -1,8 +1,8 @@
 "use strict";
 
-var labApp = angular.module('labApp', []);
+var lab = angular.module('lab', []);
 
-labApp.controller('LabCtrl', function ($scope, $http) {
+lab.controller('LabCtrl', function ($scope, $http) {
     $http.get('/words/noun').success(function(data) {
         $scope.noun1 = data;
     });
@@ -12,7 +12,7 @@ labApp.controller('LabCtrl', function ($scope, $http) {
     $http.get('/words/adjective').success(function(data) {
         $scope.adjective1 = data;
     });
-    $http.get('/words/adjective').success(function(data) {
+    $http.get('/words//adjective').success(function(data) {
         $scope.adjective2 = data;
     });
     $http.get('/words/verb').success(function(data) {

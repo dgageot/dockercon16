@@ -1,0 +1,1 @@
+docker-machine rm -y kv master node-0{1,2}

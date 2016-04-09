@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+  web:
+    image: dgageot/lab-web
+    ports:
+     - "80"
+    networks:
+     - lab-net
+
+  words:
+    image: dgageot/lab-words-dispatcher
+    expose:
+     - "8080"
+    networks:
+     - lab-net
+
+  words-java:
+    image: dgageot/lab-words-java
+    expose:
+     - "8080"
+    networks:
+     - lab-net
+
+  db-ui:
+    image: mongo-express:0.30.43
+    ports:
+     - "8081"
+    networks:
+     - lab-net
+
+  mongo:
+    image: mongo:3.2.4
+    expose:
+     - "27017"
+    networks:
+     - lab-net
+
+networks:
+  lab-net:
