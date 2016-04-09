@@ -23,3 +23,6 @@ docker-machine create -d virtualbox --swarm \
     --engine-opt="cluster-store=consul://$(docker-machine ip kv):8500" \
     --engine-opt="cluster-advertise=eth1:2376" \
     node-02
+
+eval $(docker-machine env --swarm master)
+docker network create --driver overlay my-net

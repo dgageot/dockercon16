@@ -38,3 +38,4 @@ services:
 
 networks:
   lab-net:
+    external: true
