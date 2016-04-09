@@ -1,0 +1,19 @@
+body {
+  font-family: 'Indie Flower', cursive;
+}
+
+h1 {
+  margin:0;
+  text-align: center;
+  font-size: 80px;
+}
+
+ul
+{
+  list-style-type: none;
+}
+
+li {
+  text-decoration: none;
+  font-size: 60px;
+}

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en" ng-app="likeApp">
+<head>
+  <meta charset="utf-8">
+  <title>Like</title>
+  <link rel="stylesheet" href="style.css">
+  <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+</head>
+<body ng-controller="likeController">
+  <h1>Cadavre Exquis</h1>
+  <ul>
+    <li ng-repeat="like in likes">{{like.name}}</li>
+  </ul>
+  <script src="angular.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+
