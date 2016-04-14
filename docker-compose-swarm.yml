@@ -20,7 +20,9 @@ services:
     expose:
      - "8080"
     networks:
-     - lab-net
+     lab-net:
+       aliases:
+         - words-java
 
   db-ui:
     image: mongo-express:0.30.43
