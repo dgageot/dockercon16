@@ -4,7 +4,7 @@ set -e
 
 docker-machine create -d virtualbox kv
 
-docker $(docker-machine config kv) run -d -p "8500:8500" --name="consul" -h "consul" progrium/consul -server -bootstrap
+docker $(docker-machine config kv) run -d -p "8500:8500" --name="consul" --restart "always" -h "consul" progrium/consul -server -bootstrap
 
 docker-machine create -d virtualbox --swarm --swarm-master \
     --swarm-discovery="consul://$(docker-machine ip kv):8500" \
@@ -25,4 +25,4 @@ docker-machine create -d virtualbox --swarm \
     node-02
 
 eval $(docker-machine env --swarm master)
-docker network create --driver overlay my-net
+docker network create --driver overlay lab-net
