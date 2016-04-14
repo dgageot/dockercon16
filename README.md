@@ -1,4 +1,4 @@
-# Run the dataabse with compose
+# Run the database with compose
 
 ```
 docker-compose up
