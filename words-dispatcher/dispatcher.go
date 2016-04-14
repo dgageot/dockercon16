@@ -3,6 +3,7 @@ package main
 import (
 	"io/ioutil"
 	"log"
+	"net"
 	"net/http"
 )
 
@@ -20,6 +21,14 @@ func forward(url string) func(w http.ResponseWriter, r *http.Request) {
 			log.Println("Error", err)
 			http.Error(w, err.Error(), 500)
 			return
+		}
+
+		log.Println("answered by", r.RemoteAddr)
+		addrs, err := net.LookupHost("words-java")
+		if err != nil {
+			log.Println(err)
+		} else {
+			log.Println(addrs)
 		}
 
 		buf, err := ioutil.ReadAll(resp.Body)
