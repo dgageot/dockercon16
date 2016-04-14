@@ -6,13 +6,14 @@ services:
     ports:
      - "80"
     networks:
-     - lab-net
+     - private
 
   words:
     image: dockerdemos/lab-words-dispatcher
     expose:
      - "8080"
     networks:
+     - private
      - lab-net
 
   words-java:
@@ -20,24 +21,24 @@ services:
     expose:
      - "8080"
     networks:
-     lab-net:
-       aliases:
-         - words-java
+     - private
+     - lab-net
 
   db-ui:
     image: mongo-express:0.30.43
     ports:
      - "8081"
     networks:
-     - lab-net
+     - private
 
   mongo:
     image: mongo:3.2.4
     expose:
      - "27017"
     networks:
-     - lab-net
+     - private
 
 networks:
+  private:
   lab-net:
     external: true
