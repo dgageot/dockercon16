@@ -52,7 +52,7 @@ func (server *Server) putLike(writer http.ResponseWriter, request *http.Request 
 }
 
 func (server *Server) getLike(writer http.ResponseWriter, request *http.Request ) {
-  payload, err := json.Marshal(server.likes) // sort them by descending dates
+  payload, err := json.Marshal(server.likes)
   if err != nil {
     http.Error(writer, err.Error(), http.StatusInternalServerError)
     return
