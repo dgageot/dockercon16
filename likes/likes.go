@@ -46,7 +46,7 @@ func (server *Server) putLike(writer http.ResponseWriter, request *http.Request 
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
     return
 	}
-  server.likes = append(server.likes, like)
+  server.likes = append([]Like{like}, server.likes...)
   writer.Header().Set("Content-Type", "application/json")
   writer.WriteHeader(http.StatusCreated)
 }
