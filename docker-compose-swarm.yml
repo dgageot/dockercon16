@@ -2,21 +2,21 @@ version: '2'
 
 services:
   web:
-    image: dgageot/lab-web
+    image: dockerdemos/lab-web
     ports:
      - "80"
     networks:
      - lab-net
 
   words:
-    image: dgageot/lab-words-dispatcher
+    image: dockerdemos/lab-words-dispatcher
     expose:
      - "8080"
     networks:
      - lab-net
 
   words-java:
-    image: dgageot/lab-words-java
+    image: dockerdemos/lab-words-java
     expose:
      - "8080"
     networks:
