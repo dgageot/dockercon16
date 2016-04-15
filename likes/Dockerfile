@@ -1,10 +1,9 @@
-FROM golang:1.6.0-alpine
+FROM golang:1.6.1-alpine
 
-EXPOSE 8080
-
-COPY . /go/src/likes
 WORKDIR /go/src/likes
-RUN go get -d -v
-RUN go install -v
-
+EXPOSE 8080
 CMD likes
+
+COPY . ./
+RUN go get -d -v && go install -v
+
