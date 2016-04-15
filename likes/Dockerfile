@@ -1,9 +1,8 @@
 FROM golang:1.6.1-alpine
 
-WORKDIR /go/src/likes
 EXPOSE 8080
-CMD likes
+WORKDIR /go/src/likes
+CMD ["./likes"]
 
 COPY . ./
-RUN go get -d -v && go install -v
-
+RUN go get -d -v && go build -v
