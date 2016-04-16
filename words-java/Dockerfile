@@ -16,4 +16,4 @@ ADD pom.xml .
 RUN mvn verify -DskipTests --fail-never
 
 ADD . ./
-RUN mvn verify -DskipTests
+RUN mvn -o verify -DskipTests
