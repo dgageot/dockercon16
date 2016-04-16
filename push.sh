@@ -2,11 +2,9 @@
 
 set -e
 
-docker build -t dockerdemos/lab-web web
-docker push dockerdemos/lab-web
+folders="web words-dispatcher words-java"
 
-docker build -t dockerdemos/lab-words-dispatcher words-dispatcher
-docker push dockerdemos/lab-words-dispatcher
-
-docker build -t dockerdemos/lab-words-java words-java
-docker push dockerdemos/lab-words-java
+for folder in $folders; do
+  docker build -t dockerdemos/lab-$folder $folder
+  docker push dockerdemos/lab-$folder
+done
