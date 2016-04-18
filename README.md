@@ -127,6 +127,24 @@ As a user, you should see no difference compared to the original application.
 # Run the application on a shared swarm
 
 
+# Warm-up
+
+Before attending this workshop in a conference, as network availibility is often complexe, please check you have the following :
+* A laptop + cord
+* Have docker 1.11 installed through toolbox or docker desktop beta
+  * [Toolbox for windows](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.exe) 
+  * [Toolbox for Mac](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.pkg) 
+  * If you haven't before, register for the beta at https://beta.docker.com
+* Test your docker installation works fine
+  * `docker run hello-world` and check you see the welcome message
+  * `docker run -p 8080:8080 nginx` and open your browser to your machine on port 8080 and check you see nginx message.
+* Warm up your local docker install with the following images :
+  * `docker pull dockerdemos/lab-web`
+  * `docker pull dockerdemos/lab-words-dispatcher`
+  * `docker pull dockerdemos/lab-words-java`
+  * `docker pull mongo-express:0.30.43`
+  * `docker pull mongo:3.2.4`
+
 # Docker Features demonstrated
 Last Devoxx & Mix-IT in 2015 was with docker 1.6
 
