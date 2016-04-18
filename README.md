@@ -131,10 +131,9 @@ As a user, you should see no difference compared to the original application.
 
 Before attending this workshop in a conference, as network availibility is often complexe, please check you have the following :
 * A laptop + cord
-* Have docker 1.11 installed through toolbox or docker desktop beta
-  * [Toolbox for windows](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.exe) 
-  * [Toolbox for Mac](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.pkg) 
-  * If you haven't before, register for the beta at https://beta.docker.com
+* Install docker 1.11 
+  * If you haven't before, register for the Docker for desktop beta at https://beta.docker.com
+  * Install with Toolbox for [windows](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.exe) or for [Mac](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.pkg) 
 * Test your docker installation works fine
   * `docker run hello-world` and check you see the welcome message
   * `docker run -p 8080:8080 nginx` and open your browser to your machine on port 8080 and check you see nginx message.
