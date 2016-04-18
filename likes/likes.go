@@ -20,8 +20,9 @@ type Server struct {
 
 func (server *Server) start(port int) {
   router := mux.NewRouter()
-  router.HandleFunc("/likes", server.getLike).Methods("GET")
-  router.HandleFunc("/likes", server.putLike).Methods("PUT")
+  router.HandleFunc("/likes", server.options).Methods("OPTIONS")
+  router.HandleFunc("/likes", server.allLike).Methods("GET")
+  router.HandleFunc("/likes", server.addLike).Methods("POST")
   router.PathPrefix("/").Handler(http.FileServer(http.Dir("./app")))
   http.Handle("/", router)
   
@@ -34,7 +35,7 @@ func main() {
   server.start(8080)
 }
 
-func (server *Server) putLike(writer http.ResponseWriter, request *http.Request ) {
+func (server *Server) addLike(writer http.ResponseWriter, request *http.Request ) {
   bytes, err := ioutil.ReadAll(request.Body)
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
@@ -46,12 +47,13 @@ func (server *Server) putLike(writer http.ResponseWriter, request *http.Request 
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
     return
 	}
-  server.likes = append([]Like{like}, server.likes...)
+  server.likes = append([]Like{like}, server.likes...) 
+  writeCORSHeader(writer)
   writer.Header().Set("Content-Type", "application/json")
   writer.WriteHeader(http.StatusCreated)
 }
 
-func (server *Server) getLike(writer http.ResponseWriter, request *http.Request ) {
+func (server *Server) allLike(writer http.ResponseWriter, request *http.Request ) {
   payload, err := json.Marshal(server.likes)
   if err != nil {
     http.Error(writer, err.Error(), http.StatusInternalServerError)
@@ -59,4 +61,15 @@ func (server *Server) getLike(writer http.ResponseWriter, request *http.Request 
   }
   writer.Header().Set("Content-Type", "application/json")
   writer.Write(payload)
+}
+
+func (server *Server) options(writer http.ResponseWriter, request *http.Request ) {
+  writeCORSHeader(writer)
+  writer.WriteHeader(http.StatusOK)
+}
+
+func writeCORSHeader(writer http.ResponseWriter) {
+  writer.Header().Set("Access-Control-Allow-Origin","*")
+  writer.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+  writer.Header().Set("Access-Control-Allow-Headers", "X-DOCKERFTW, Content-Type")
 }
