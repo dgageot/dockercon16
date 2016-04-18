@@ -24,4 +24,9 @@ lab.controller('LabCtrl', function ($scope, $http) {
     $http.get('/words/verb').success(function(data) {
         $scope.verb = data;
     });
+    
+    $scope.share = function() {
+      var sentence = $scope.noun1 + " " + $scope.adjective1 + " " + $scope.verb + " " + $scope.noun2 + " " + $scope.adjective2
+      $http.post('http://docker.local:9000/likes',{'name':sentence})
+    };
 });
