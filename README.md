@@ -1,5 +1,24 @@
 # Cadavres Exquis "Swarm edition"
 
+## Warm-up
+
+If you plan to attend this workshopp in a conference, as network availibility is often flaky, please check you have the following :
+* A laptop + cord
+* Install docker 1.11 
+  * If you haven't before, register for the Docker for desktop beta at https://beta.docker.com
+  * Install with Toolbox for [windows](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.exe) or for [Mac](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.pkg) 
+* Test your docker installation works fine
+  * `docker run hello-world` and check you see the welcome message
+  * `docker run -p 8080:8080 nginx` and open your browser to your machine on port 8080 and check you see nginx message.
+* Warm up your local docker install with the following images :
+  * `docker pull dockerdemos/lab-web`
+  * `docker pull dockerdemos/lab-words-dispatcher`
+  * `docker pull dockerdemos/lab-words-java`
+  * `docker pull mongo-express:0.30.43`
+  * `docker pull mongo:3.2.4`
+
+## 1 Look Ma' a microservice app on my local machine
+
 Our first version of the application is composed of four micro-services:
 
   - A `web` service that uses `nginx` running on port `80` to serve an HTML5/Js
@@ -66,7 +85,7 @@ Use this command to find its url:
 docker-compose port db-ui 8081
 ```
 
-# Run the application with a dispatcher
+# 2 Run the application with a dispatcher
 
 We are going to change the micro-service based architecture of our application
 without changing its code.
@@ -124,25 +143,42 @@ All we have to do is:
 
 As a user, you should see no difference compared to the original application.
 
-# Run the application on a shared swarm
+# 3 Run the application on a shared swarm
 
+1. Copy the provided certificates from the USB key.
+2. Point your docker client to the proper machine using docker-machine
+    `eval $(docker-machine env lab-docker)`
+3. Configure *Docker Compose* to use the third configuration file:
 
-# Warm-up
+  ```
+  cd lab-docker
+  cp docker-compose-v3.yml docker-compose.yml
+  ```
+4. Build and start the application:
 
-Before attending this workshop in a conference, as network availibility is often complexe, please check you have the following :
-* A laptop + cord
-* Install docker 1.11 
-  * If you haven't before, register for the Docker for desktop beta at https://beta.docker.com
-  * Install with Toolbox for [windows](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.exe) or for [Mac](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.pkg) 
-* Test your docker installation works fine
-  * `docker run hello-world` and check you see the welcome message
-  * `docker run -p 8080:8080 nginx` and open your browser to your machine on port 8080 and check you see nginx message.
-* Warm up your local docker install with the following images :
-  * `docker pull dockerdemos/lab-web`
-  * `docker pull dockerdemos/lab-words-dispatcher`
-  * `docker pull dockerdemos/lab-words-java`
-  * `docker pull mongo-express:0.30.43`
-  * `docker pull mongo:3.2.4`
+  ```
+  docker-compose up --build -d
+  docker-compose logs
+  ```
+  
+You replicated the whole application running on a single local machine, into the cloud.
+
+# 4 Connect to the other databases
+
+1. Configure *Docker Compose* to use the third configuration file:
+
+  ```
+  cd lab-docker
+  cp docker-compose-v3.yml docker-compose.yml
+  ```
+2. Build and start the application:
+
+  ```
+  docker-compose up --build -d
+  docker-compose logs
+  ```
+  
+Try to add some words of your own.  
 
 # Docker Features demonstrated
 Last Devoxx & Mix-IT in 2015 was with docker 1.6
@@ -153,6 +189,3 @@ Last Devoxx & Mix-IT in 2015 was with docker 1.6
 * Network-wide container aliases - Docker 1.10
 * DNS discovery - Docker 1.11
 * Build in docker-compose up - Docker-Compose 1.7
-
-
-
