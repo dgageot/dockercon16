@@ -192,4 +192,4 @@ Last Devoxx & Mix-IT in 2015 was with docker 1.6
 
 # About 'Cadavre Exquis'
 
-Cadavre Exquis is a French word games, you'll find more on this [wikipedia page](https://fr.wikipedia.org/wiki/Cadavre_exquis_(jeu)) (in French)
+Cadavre Exquis is a French word game, you'll find more on this [wikipedia page](https://fr.wikipedia.org/wiki/Cadavre_exquis_(jeu)) (in French)
