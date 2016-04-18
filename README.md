@@ -189,3 +189,7 @@ Last Devoxx & Mix-IT in 2015 was with docker 1.6
 * Network-wide container aliases - Docker 1.10
 * DNS discovery - Docker 1.11
 * Build in docker-compose up - Docker-Compose 1.7
+
+# About 'Cadavre Exquis'
+
+Cadavre Exquis is a French word games, you'll find more on this [wikipedia page](https://fr.wikipedia.org/wiki/Cadavre_exquis_(jeu)) (in French)
