@@ -126,11 +126,16 @@ As a user, you should see no difference compared to the original application.
 
 # Run the application on a shared swarm
 
-# Docker news
 
-+ Multi-host Networking - Docker 1.9
-+ New compose file - Docker 1.10
-+ Use links in networks - Docker 1.10
-+ Network-wide container aliases - Docker 1.10
-+ Reschedule containers when a node fails - Swarm 1.1
-+ Round-robin DNS - Docker 1.11
+# Docker Features demonstrated
+Last Devoxx & Mix-IT in 2015 was with docker 1.6
+
+* Multi-host Networking - Docker 1.9
+* New compose file - Docker 1.10
+* Use links in networks - Docker 1.10
+* Network-wide container aliases - Docker 1.10
+* DNS discovery - Docker 1.11
+* Build in docker-compose up - Docker-Compose 1.7
+
+
+
