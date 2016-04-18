@@ -7,10 +7,11 @@ import (
 	"math/rand"
 	"net"
 	"net/http"
+	"time"
 )
 
 func main() {
-	rand.Seed(42)
+	rand.Seed(time.Now().UnixNano())
 	http.HandleFunc("/", forward("words-java", 8080))
 	http.ListenAndServe(":8080", nil)
 }
