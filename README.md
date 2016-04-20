@@ -2,22 +2,23 @@
 
 ## Warm-up
 
-If you plan to attend this workshop in a conference, as network availibility is often flaky, please check you have the following :
+If you plan to attend this workshop in a conference, as network availability is often flaky, please check you have the following:
+
 * A laptop + cord
-* Install docker 1.11 
-  * Install with Toolbox for [windows](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.exe) or for [Mac](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.pkg) 
-  * If you haven't done it already, register for the Docker for desktop beta at https://beta.docker.com, and give us your hub account name during the session we can probably do something for you.
-* Test your docker installation works fine
+* Install docker 1.11
+  * Install with Toolbox for [windows](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.exe) or for [Mac](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.pkg)
+  * If you haven't done it already, register for the Docker for Desktop Beta at https://beta.docker.com, and give us your hub account name during the session we can probably do something for you.
+* Test that your docker installation works fine
   * `docker run hello-world` and check you see the welcome message
-  * `docker run -p 8080:80 nginx` and open your browser to your machine on port 8080 and check you see nginx default page.
-* Warm up your local docker machine with the following images :
+  * `docker run -p 8080:80 nginx` and open your browser to the IP given by `docker-machine ip`, on port 8080 and check you see nginx default page.
+* Pull the base images we are going to use during the lab:
   * `docker pull dockerdemos/lab-web`
   * `docker pull dockerdemos/lab-words-dispatcher`
   * `docker pull dockerdemos/lab-words-java`
   * `docker pull mongo-express:0.30.43`
   * `docker pull mongo:3.2.4`
 
-## 1 Look Ma' a microservice app on my local machine
+## 1 - Look Ma' a microservice app on my local machine
 
 Our first version of the application is composed of four micro-services:
 
@@ -85,7 +86,7 @@ Use this command to find its url:
 docker-compose port db-ui 8081
 ```
 
-# 2 Run the application with a dispatcher
+# 2 - Run the application with a dispatcher
 
 We are going to change the micro-service based architecture of our application
 without changing its code.
@@ -143,14 +144,17 @@ All we have to do is:
 
 As a user, you should see no difference compared to the original application.
 
-# 3 Run the application on a shared swarm
+# 3 - Run the application on a shared Swarm
 
-We're going to the clouds, with this setup, we're going to send all your containers to a swarm on multiple nodes.
-We have alerady setup the swarm cluster for you before the talk.
-You need to tell your docker client to talk to the swarm docker daemon rather than your local docker daemon.
-To achieve this, you need to copy a couple of certificated, which are located on a couple of USB keys we pass along, and follow the instructions below :
+We're going to the Cloud! With this setup, we are going to send all your containers
+to a Swarm composed of multiple nodes.
+We have already setup the Swarm for you before the talk.
+You need to point your Docker CLI to the Swarm rather than your local docker daemon.
+This is done through environment variables. And because out Swarm has TLS enabled,
+you need a copy a of our certificats. We'll pass along a couple of USB keys with
+the certificates on it. Then follow the instructions below:
 
-1. Copy the provided certificates from the USB key.
+1. Copy the provided certificates from the USB key. (TODO FIX THIS)
 2. Point your docker client to the proper machine using docker-machine
     `eval $(docker-machine env lab-docker)`
 3. Configure *Docker Compose* to use the third configuration file:
@@ -165,22 +169,22 @@ To achieve this, you need to copy a couple of certificated, which are located on
   docker-compose up --build -d
   docker-compose logs
   ```
-  
-You replicated the whole application running on a single local machine, into the cloud.
-Your app runs into the `private` network only available for your containers. This is possible because the app is scoped by your team name.
 
-## How is that possible ?
+The same application that ran on you machine now run in the Cloud on a shared Swarm. d.
+Your app runs uses a `private` network only available to your containers.
+Multiple similar applications can coexists because the compose file is scoped to your team name.
 
-If you look carefully between the [docker-compose-v2.yml](docker-compose-v2.yml) and the [docker-compose-v3.yml](docker-compose-v3.yml) you'll see that all the links have been removed and all the services have been getting a `networks` instead.
+## How is that possible?
 
-## What is the swarm cluster composed of ?
+If you look carefully between the [docker-compose-v2.yml](docker-compose-v2.yml) and the [docker-compose-v3.yml](docker-compose-v3.yml)
+you'll see that all the links have been removed and all the services have been getting a `networks` instead.
 
-You can check the swarm cluster composition by issuing the `docker-machine ls` command. You'll see a key-value store node named `kv`, a swarm master node named `master` and a few swarm nodes named `node-xx`. 
-Docker will deploy your containers in the various swarm node.
+## What is the Swarm composed of?
 
-TODO: Add instruction to reproduce the cluster locally or on google cloud
+You can check the Swarm composition by issuing the `docker-machine ls` command.
+You'll see a key-value store node named `kv`, a Swarm master node named `master` and a few Swarm nodes named `node-xx`.
 
-# 4 Connect to the other databases
+# 4 - Connect to the other nodes
 
 1. Configure *Docker Compose* to use the fourth configuration file:
 
@@ -188,16 +192,18 @@ TODO: Add instruction to reproduce the cluster locally or on google cloud
   cd lab-docker
   cp docker-compose-v4.yml docker-compose.yml
   ```
+
 2. Build and start the application:
 
   ```
   docker-compose up --build -d
   docker-compose logs
   ```
-  
+
 Try to add some words of your own.  
 
 # Docker Features demonstrated
+
 Last Devoxx & Mix-IT in 2015 was with docker 1.6
 
 * Multi-host Networking - Docker 1.9
