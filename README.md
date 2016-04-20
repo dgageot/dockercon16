@@ -165,11 +165,11 @@ You replicated the whole application running on a single local machine, into the
 
 # 4 Connect to the other databases
 
-1. Configure *Docker Compose* to use the third configuration file:
+1. Configure *Docker Compose* to use the fourth configuration file:
 
   ```
   cd lab-docker
-  cp docker-compose-v3.yml docker-compose.yml
+  cp docker-compose-v4.yml docker-compose.yml
   ```
 2. Build and start the application:
 
