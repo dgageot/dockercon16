@@ -145,6 +145,11 @@ As a user, you should see no difference compared to the original application.
 
 # 3 Run the application on a shared swarm
 
+We're going to the clouds, with this setup, we're going to send all your containers to a swarm on multiple nodes.
+We have alerady setup the swarm cluster for you before the talk.
+You need to tell your docker client to talk to the swarm docker daemon rather than your local docker daemon.
+To achieve this, you need to copy a couple of certificated, which are located on a couple of USB keys we pass along, and follow the instructions below :
+
 1. Copy the provided certificates from the USB key.
 2. Point your docker client to the proper machine using docker-machine
     `eval $(docker-machine env lab-docker)`
@@ -162,6 +167,13 @@ As a user, you should see no difference compared to the original application.
   ```
   
 You replicated the whole application running on a single local machine, into the cloud.
+Your app runs into the `private` network only available for your containers. This is possible because the app is scoped by your team name.
+
+## What is the swarm cluster composed of ?
+
+You can check the swarm cluster composition by issuing the `docker-machine ls` command. You'll see a key-value store node named `kv`, a swarm master node named `master` and a few swarm nodes named `node-xx`. 
+Docker will deploy your containers in the various swarm node.
+
 
 # 4 Connect to the other databases
 
