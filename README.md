@@ -2,15 +2,15 @@
 
 ## Warm-up
 
-If you plan to attend this workshopp in a conference, as network availibility is often flaky, please check you have the following :
+If you plan to attend this workshop in a conference, as network availibility is often flaky, please check you have the following :
 * A laptop + cord
 * Install docker 1.11 
-  * If you haven't before, register for the Docker for desktop beta at https://beta.docker.com
   * Install with Toolbox for [windows](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.exe) or for [Mac](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.pkg) 
+  * If you haven't done it already, register for the Docker for desktop beta at https://beta.docker.com, and give us your hub account name during the session we can probably do something for you.
 * Test your docker installation works fine
   * `docker run hello-world` and check you see the welcome message
-  * `docker run -p 8080:8080 nginx` and open your browser to your machine on port 8080 and check you see nginx message.
-* Warm up your local docker install with the following images :
+  * `docker run -p 8080:80 nginx` and open your browser to your machine on port 8080 and check you see nginx default page.
+* Warm up your local docker machine with the following images :
   * `docker pull dockerdemos/lab-web`
   * `docker pull dockerdemos/lab-words-dispatcher`
   * `docker pull dockerdemos/lab-words-java`
