@@ -2,23 +2,24 @@
 
 ## Warm-up
 
-If you plan to attend this workshop in a conference, as network availability is often flaky, please check you have the following:
+If you plan on attending this workshop, you need:
 
 * A laptop + cord
 * Install docker 1.11
   * Install with Toolbox for [windows](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.exe) or for [Mac](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.pkg)
   * If you haven't done it already, register for the Docker for Desktop Beta at https://beta.docker.com, and give us your hub account name during the session we can probably do something for you.
-* Test that your docker installation works fine
-  * `docker run hello-world` and check you see the welcome message
+* Test that your docker installation works fine:
+  * `docker version` should show version 1.11 on both Client and Server side.
+  * `docker run hello-world` and check you see the welcome message.
   * `docker run -p 8080:80 nginx` and open your browser to the IP given by `docker-machine ip`, on port 8080 and check you see nginx default page.
-* Pull the base images we are going to use during the lab:
+* As network availability is often flaky, pull the base images we are going to use during the lab:
   * `docker pull dockerdemos/lab-web`
   * `docker pull dockerdemos/lab-words-dispatcher`
   * `docker pull dockerdemos/lab-words-java`
   * `docker pull mongo-express:0.30.43`
   * `docker pull mongo:3.2.4`
 
-## 1 - Look Ma' a microservice app on my local machine
+## 1 - Look Ma' a micro-service app on my machine
 
 Our first version of the application is composed of four micro-services:
 
@@ -32,14 +33,14 @@ Our first version of the application is composed of four micro-services:
 
 ## Let's run the application
 
-1. Point Docker CLI to the Docker daemon
+1. Point Docker CLI to the Docker daemon:
 
   - If you have `Docker for Mac` or `Docker for Windows`, there's nothing to be
     done. Run `docker info` to check that everything is up and running.
 
   - If you have `Docker Toolbox`, either open the `Quick Start` terminal or run
     `docker-machine env` to show the command you have to **run** to point to the
-    Docker Daemon running on Virtualbox.
+    Docker Daemon running on VirtualBox.
 
 2. Configure *Docker Compose* to use the first configuration file:
 
@@ -69,18 +70,19 @@ Find the IP and port to the web UI and open a browser to that url:
   ```
 
 Each time the page is refreshed, you will see a sentence composed of 5 random
-words: a noun, an adjective, a verb, a noun and an adjective.
+words: a noun, an adjective, a verb, a noun and an adjective. That's a "Cadavre
+Exquis"! You did it!
 
 ## How does it work?
 
 The angularJs application served by the `nginx` based `web` service sends 5
-GET queries to the `nginx` that proxies the `words-java` rest service.
+http `GET` queries to the `nginx` that proxies the `words-java` REST service.
 
-On each query, the `words-java` loads of the words from the database and chooses
+On each query, the `words-java` loads all the words from the database and chooses
 a random one.
 
 The `db-ui` web UI can be used to configure the list of words in the database.
-Use this command to find its url:
+Use this command to find the url for the UI:
 
 ```
 docker-compose port db-ui 8081
@@ -89,10 +91,10 @@ docker-compose port db-ui 8081
 # 2 - Run the application with a dispatcher
 
 We are going to change the micro-service based architecture of our application
-without changing its code.
+without changing its code. That's neat!
 
 Our idea is to introduce an additional micro-service between the `web` and the
-`java` rest api. This new component is called the `words-dispatcher`. It's a go
+`java` rest api. This new component is called the `words-dispatcher`. It's a Go
 based web server that will later help dispatch word queries to multiple `words-java`
 backends.
 
@@ -106,7 +108,7 @@ The `web` expectation is that a `words` host exists on the network and that
 it will be able to connect to it via port `8080`.
 
 Thanks to the `links` configuration, we are able to connect the `web` service
-to the `words-java` service using the `words` dns name.
+to the `words-java` service using the `words` DNS name.
 
 Also, thanks to the `expose` configuration, the `words-java` service will be
 reachable on port `8080` by the other services. Because the `8080` port is not
@@ -128,7 +130,7 @@ All we have to do is:
 
 ## Let's use the application
 
-1. Configure *Docker Compose* to use the first configuration file:
+1. Configure *Docker Compose* to use the second configuration file:
 
   ```
   cd lab-docker
@@ -143,53 +145,60 @@ All we have to do is:
   ```
 
 As a user, you should see no difference compared to the original application.
+That's the whole point!
 
 # 3 - Run the application on a shared Swarm
 
-We're going to the Cloud! With this setup, we are going to send all your containers
-to a Swarm composed of multiple nodes.
-We have already setup the Swarm for you before the talk.
-You need to point your Docker CLI to the Swarm rather than your local docker daemon.
-This is done through environment variables. And because out Swarm has TLS enabled,
-you need a copy a of our certificats. We'll pass along a couple of USB keys with
-the certificates on it. Then follow the instructions below:
+We're going to the Cloud! We are going to send all your containers to a Swarm
+composed of multiple nodes. We have already setup the Swarm for you before the talk.
+You just need to point your Docker CLI to the Swarm rather than to your local
+Docker daemon.
+This is done through environment variables. And because our Swarm has TLS enabled,
+you need a copy a of our certificates. We'll pass along a couple of USB keys with
+the certificates on them. Then follow the instructions below:
 
 1. Copy the provided certificates from the USB key. (TODO FIX THIS)
 2. Point your docker client to the proper machine using docker-machine
-    `eval $(docker-machine env lab-docker)`
-3. Configure *Docker Compose* to use the third configuration file:
+    `eval $(docker-machine env lab-docker)` (TODO FIX THIS)
+3. Confirm that `docker info` shows multiple nodes.
+4. Configure *Docker Compose* to use the third configuration file:
 
   ```
-  cd lab-docker
+  mv lab-docker team-XX
   cp docker-compose-v3.yml docker-compose.yml
   ```
-4. Build and start the application:
+
+Renaming the folder you are working in is **VERY** important. It makes it possible
+to scope the whole project to your team name.
+
+5. Build and start the application:
 
   ```
   docker-compose up --build -d
   docker-compose logs
   ```
 
-The same application that ran on you machine now run in the Cloud on a shared Swarm. d.
+The same application that ran on you machine now runs in the Cloud on a shared Swarm.
 Your app runs uses a `private` network only available to your containers.
-Multiple similar applications can coexists because the compose file is scoped to your team name.
+Multiple similar applications can coexists because the compose file is scoped to
+your team based on the name of the folder where you started `docker-compose`.
 
 ## How is that possible?
 
-If you look carefully between the [docker-compose-v2.yml](docker-compose-v2.yml) and the [docker-compose-v3.yml](docker-compose-v3.yml)
-you'll see that all the links have been removed and all the services have been getting a `networks` instead.
+If you compare [docker-compose-v2.yml](docker-compose-v2.yml) and [docker-compose-v3.yml](docker-compose-v3.yml)
+you'll see that all the links have been removed and all the services now use a
+private network instead. This network is created by *Docker Compose*. It's name
+is `private`, prefixed by the name of your project (ie your team name).
 
-## What is the Swarm composed of?
-
-You can check the Swarm composition by issuing the `docker-machine ls` command.
-You'll see a key-value store node named `kv`, a Swarm master node named `master` and a few Swarm nodes named `node-xx`.
+This overlay network and its DNS make it possible for the containers to find each
+other by their service names.
 
 # 4 - Connect to the other nodes
 
 1. Configure *Docker Compose* to use the fourth configuration file:
 
   ```
-  cd lab-docker
+  cd team-XX
   cp docker-compose-v4.yml docker-compose.yml
   ```
 
@@ -200,7 +209,16 @@ You'll see a key-value store node named `kv`, a Swarm master node named `master`
   docker-compose logs
   ```
 
-Try to add some words of your own.  
+Now, we changes the services so that some services are now part of multiple networks.
+A private, projects scoped, automatically created network and a shared
+pre-existing network. All services with the same name or alias on a shared network
+will be reachable with the same DNS name. A client can get all the IPs for
+the DNS name and start load balancing between the nodes.
+That's exactly what the `words-dispatcher` does. To bypass the DNS cache, it
+searches for all the IPs for the `works-java` services and uses a random one
+each time. This effectively load balances queries among all the teams.
+
+Try to add some words of your own and play with those "Cadavres Exquis"!!
 
 # Docker Features demonstrated
 
