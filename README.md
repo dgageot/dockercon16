@@ -130,14 +130,21 @@ All we have to do is:
 
 ## Let's use the application
 
-1. Configure *Docker Compose* to use the second configuration file:
+1. Stop the application currently running:
 
   ```
   cd lab-docker
+  docker-compose stop
+  docker-compose rm -f
+  ```
+
+2. Configure *Docker Compose* to use the second configuration file:
+
+  ```
   cp docker-compose-v2.yml docker-compose.yml
   ```
 
-2. Build and start the application:
+3. Build and start the application:
 
   ```
   docker-compose up --build -d
@@ -157,14 +164,25 @@ This is done through environment variables. And because our Swarm has TLS enable
 you need a copy a of our certificates. We'll pass along a couple of USB keys with
 the certificates on them. Then follow the instructions below:
 
-1. Copy the provided certificates from the USB key. (TODO FIX THIS)
-2. Point your docker client to the proper machine using docker-machine
-    `eval $(docker-machine env lab-docker)` (TODO FIX THIS)
-3. Confirm that `docker info` shows multiple nodes.
-4. Configure *Docker Compose* to use the third configuration file:
+1. Stop the application currently running:
+
+  ```
+  cd lab-docker
+  docker-compose stop
+  docker-compose rm -f
+  ```
+
+2. Copy the provided certificates from the USB key. (TODO FIX THIS)
+3. Point your docker client to the proper machine using docker-machine
+
+  `eval $(docker-machine env lab-docker)` (TODO FIX THIS)
+
+4. Confirm that `docker info` shows multiple nodes.
+5. Configure *Docker Compose* to use the third configuration file:
 
   ```
   mv lab-docker team-XX
+  cd team-XX
   cp docker-compose-v3.yml docker-compose.yml
   ```
 
@@ -195,14 +213,22 @@ other by their service names.
 
 # 4 - Connect to the other nodes
 
-1. Configure *Docker Compose* to use the fourth configuration file:
+1. Stop the application currently running:
+
+  ```
+  cd team-XX
+  docker-compose stop
+  docker-compose rm -f
+  ```
+
+2. Configure *Docker Compose* to use the fourth configuration file:
 
   ```
   cd team-XX
   cp docker-compose-v4.yml docker-compose.yml
   ```
 
-2. Build and start the application:
+3. Build and start the application:
 
   ```
   docker-compose up --build -d
