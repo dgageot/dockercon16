@@ -95,7 +95,7 @@ Our idea is to introduce an additional micro-service between the `web` and the
 based web server that will later help dispatch word queries to multiple `words-java`
 backends.
 
-Thanks to a new (compose file)[docker-compose-v2.yml], we are able to insert
+Thanks to a new [compose file](docker-compose-v2.yml), we are able to insert
 the `words-dispatcher` service between the `web` service and the `words-java`
 service without touching our application code.
 
@@ -169,11 +169,16 @@ To achieve this, you need to copy a couple of certificated, which are located on
 You replicated the whole application running on a single local machine, into the cloud.
 Your app runs into the `private` network only available for your containers. This is possible because the app is scoped by your team name.
 
+## How is that possible ?
+
+If you look carefully between the [docker-compose-v2.yml](docker-compose-v2.yml) and the [docker-compose-v3.yml](docker-compose-v3.yml) you'll see that all the links have been removed and all the services have been getting a `networks` instead.
+
 ## What is the swarm cluster composed of ?
 
 You can check the swarm cluster composition by issuing the `docker-machine ls` command. You'll see a key-value store node named `kv`, a swarm master node named `master` and a few swarm nodes named `node-xx`. 
 Docker will deploy your containers in the various swarm node.
 
+TODO: Add instruction to reproduce the cluster locally or on google cloud
 
 # 4 Connect to the other databases
 
