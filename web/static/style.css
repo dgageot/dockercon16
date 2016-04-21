@@ -7,42 +7,57 @@
 }
 
 body {
-    text-align: center;
-    margin: 0;
-    padding: 0;
+	text-align: center;
+	margin: 0;
+	padding: 0;
 }
 
 .sentence {
-    margin: 100px auto 0 auto;
+	margin: 100px auto 0 auto;
 }
 
-.word {
-    display: inline-block;
-    font-family: 'Indie Flower', cursive;
-    font-size: 32px;
-    border: 2px solid;
-    padding: 20px 20px 30px 20px;
-    margin: 0 5px 10px 5px;
-    color: white;
-    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3);
-    height: 28px;
-    min-width: 30px;
+.result {
+	display: inline-block;
+	position: relative;
+	display: inline-block;
+	border: 2px solid;
+	padding: 10px 20px 30px 20px;
+	margin: 0 5px 10px 5px;
+	color: white;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3);
+	height: 42px;
+	min-width: 30px;
+}
+
+.result .word {
+	font-family: 'Indie Flower', cursive;
+	font-size: 32px;
+	color: white;
+}
+
+.result .hostname {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	font-size: 0.8em;
+	height: 14px;
 }
 
 .noun {
-    background-color: dodgerblue;
-    border-color: #1e83f1;
-    transform: rotate(1deg);
+	background-color: dodgerblue;
+	border-color: #1e83f1;
+	transform: rotate(1deg);
 }
 
 .verb {
-    background-color: orangered;
-    border-color: #e84000;
-    transform: rotate(1deg);
+	background-color: orangered;
+	border-color: #e84000;
+	transform: rotate(1deg);
 }
 
 .adjective {
-    background-color: forestgreen;
-    border-color: #1c721c;
-    transform: rotate(-1deg);
+	background-color: forestgreen;
+	border-color: #1c721c;
+	transform: rotate(-1deg);
 }
