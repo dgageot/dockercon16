@@ -150,7 +150,7 @@ All we have to do is:
 3. Build and start the application:
 
   ```
-  docker-compose up --build -d
+  docker-compose up -d
   docker-compose logs
   ```
 
@@ -201,7 +201,7 @@ to scope the whole project to your team name.
 5. Build and start the application:
 
   ```
-  docker-compose up --build -d
+  docker-compose up -d
   docker-compose logs
   ```
 
