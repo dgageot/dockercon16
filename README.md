@@ -40,7 +40,11 @@ Our first version of the application is composed of four micro-services:
 
   - If you have `Docker Toolbox`, either open the `Quick Start` terminal or run
     `docker-machine env` to show the command you have to **run** to point to the
-    Docker Daemon running on the VirtualBox VM.
+    Docker daemon running on the VirtualBox VM. On OSX, it's typically:
+
+    ```
+    eval $(docker-machine env default)
+    ```
 
 2. Configure *Docker Compose* to use the first configuration file:
 
