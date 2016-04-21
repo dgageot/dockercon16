@@ -3,33 +3,24 @@ version: '2'
 services:
   web:
     build: web
-    ports:
-     - "80:80"
-    links:
-     - words-dispatcher:words
+    ports: ["80:80"]
+    links: ["words-dispatcher:words"]
 
   words-dispatcher:
     build: words-dispatcher
-    expose:
-     - "8080"
-    links:
-     - words-java:words-java
+    expose: ["8080"]
+    links: ["words-java:words-java"]
 
   words-java:
     build: words-java
-    expose:
-     - "8080"
-    links:
-     - db:mongo
+    expose: ["8080"]
+    links: ["db:mongo"]
 
   db-ui:
     image: mongo-express:0.30.43
-    ports:
-     - "8081:8081"
-    links:
-     - db:mongo
+    ports: ["8081:8081"]
+    links: ["db:mongo"]
 
   db:
     image: mongo:3.2.4
-    expose:
-     - "27017"
+    expose: ["27017"]

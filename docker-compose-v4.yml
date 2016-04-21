@@ -3,40 +3,28 @@ version: '2'
 services:
   web:
     image: dockerdemos/lab-web
-    ports:
-     - "80"
-    networks:
-     - private
+    ports: ["80"]
+    networks: ["private"]
 
   words:
     image: dockerdemos/lab-words-dispatcher
-    expose:
-     - "8080"
-    networks:
-     - private
-     - lab-net
+    expose: ["8080"]
+    networks: ["private", "lab-net"]
 
   words-java:
     image: dockerdemos/lab-words-java
-    expose:
-     - "8080"
-    networks:
-     - private
-     - lab-net
+    expose: ["8080"]
+    networks: ["private", "lab-net"]
 
   db-ui:
     image: mongo-express:0.30.43
-    ports:
-     - "8081"
-    networks:
-     - private
+    ports: ["8081"]
+    networks: ["private"]
 
   mongo:
     image: mongo:3.2.4
-    expose:
-     - "27017"
-    networks:
-     - private
+    expose: ["27017"]
+    networks: ["private"]
 
 networks:
   private:
