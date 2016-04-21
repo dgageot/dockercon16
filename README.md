@@ -175,11 +175,15 @@ the certificates on them. Then follow the instructions below:
   docker-compose rm -f
   ```
 
-2. Copy the provided certificates from the USB key. (TODO FIX THIS)
+2. Copy the provided `certificates` from the USB key.
 
-3. Point your docker client to the proper machine using docker-machine
+3. Point your docker client to the proper machine:
 
-  `eval $(docker-machine env lab-docker)` (TODO FIX THIS)
+  ```
+  export DOCKER_TLS_VERIFY="1"
+  export DOCKER_HOST="tcp://146.148.9.22:3376"
+  export DOCKER_CERT_PATH="path_to_certificates"
+  ```
 
 4. Confirm that `docker info` shows multiple nodes.
 
