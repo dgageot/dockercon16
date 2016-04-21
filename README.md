@@ -4,22 +4,22 @@
 
 If you plan on attending this workshop, you need:
 
-* A laptop + cord
-* Install docker 1.11
-  * Install with Toolbox for [windows](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.exe) or for [Mac](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.pkg)
-  * If you haven't done it already, register for the Docker for Desktop Beta at https://beta.docker.com, and give us your hub account name during the session we can probably do something for you.
+* A laptop + power cord
+* Install docker 1.11:
+  * Install Toolbox for [windows](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.exe) or for [Mac](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.pkg)
+  * If you haven't done it already, register for the Docker for Desktop Beta at https://beta.docker.com, and give us your hub account name during the sessioni. We can probably do something for you.
 * Test that your docker installation works fine:
-  * `docker version` should show version 1.11 on both Client and Server side.
-  * `docker run hello-world` and check you see the welcome message.
-  * `docker run -p 8080:80 nginx` and open your browser to the IP given by `docker-machine ip`, on port 8080 and check you see nginx default page.
-* As network availability is often flaky, pull the base images we are going to use during the lab:
+  * `docker version` should show version `1.11` on both Client and Server side.
+  * Run `docker run hello-world` and check you see the welcome message.
+  * Run `docker run -p 8080:80 nginx` and open your browser to the IP given by `docker-machine ip`, on port 8080. You should see nginx's default page.
+* As network availability is often flaky at conferences, pull the base images we are going to use during the lab:
   * `docker pull dockerdemos/lab-web`
   * `docker pull dockerdemos/lab-words-dispatcher`
   * `docker pull dockerdemos/lab-words-java`
   * `docker pull mongo-express:0.30.43`
   * `docker pull mongo:3.2.4`
 
-## 1 - Look Ma' a micro-service app on my machine
+## 1 - Look Ma', micro-services on my machine
 
 Our first version of the application is composed of four micro-services:
 
@@ -40,7 +40,7 @@ Our first version of the application is composed of four micro-services:
 
   - If you have `Docker Toolbox`, either open the `Quick Start` terminal or run
     `docker-machine env` to show the command you have to **run** to point to the
-    Docker Daemon running on VirtualBox.
+    Docker Daemon running on the VirtualBox VM.
 
 2. Configure *Docker Compose* to use the first configuration file:
 
@@ -87,6 +87,9 @@ Use this command to find the url for the UI:
 ```
 docker-compose port db-ui 8081
 ```
+
+**Careful**, all words added to the databse at this stage will be lost for the
+next stages.
 
 # 2 - Run the application with a dispatcher
 
@@ -156,12 +159,12 @@ That's the whole point!
 
 # 3 - Run the application on a shared Swarm
 
-We're going to the Cloud! We are going to send all your containers to a Swarm
+We are going to the Cloud! Your containers will be send to a shared Swarm
 composed of multiple nodes. We have already setup the Swarm for you before the talk.
 You just need to point your Docker CLI to the Swarm rather than to your local
 Docker daemon.
 This is done through environment variables. And because our Swarm has TLS enabled,
-you need a copy a of our certificates. We'll pass along a couple of USB keys with
+you need a copy of our certificates. We'll pass along a couple of USB keys with
 the certificates on them. Then follow the instructions below:
 
 1. Stop the application currently running:
@@ -173,11 +176,13 @@ the certificates on them. Then follow the instructions below:
   ```
 
 2. Copy the provided certificates from the USB key. (TODO FIX THIS)
+
 3. Point your docker client to the proper machine using docker-machine
 
   `eval $(docker-machine env lab-docker)` (TODO FIX THIS)
 
 4. Confirm that `docker info` shows multiple nodes.
+
 5. Configure *Docker Compose* to use the third configuration file:
 
   ```
@@ -197,21 +202,25 @@ to scope the whole project to your team name.
   ```
 
 The same application that ran on you machine now runs in the Cloud on a shared Swarm.
-Your app runs uses a `private` network only available to your containers.
-Multiple similar applications can coexists because the compose file is scoped to
-your team based on the name of the folder where you started `docker-compose`.
 
 ## How is that possible?
 
 If you compare [docker-compose-v2.yml](docker-compose-v2.yml) and [docker-compose-v3.yml](docker-compose-v3.yml)
 you'll see that all the links have been removed and all the services now use a
-private network instead. This network is created by *Docker Compose*. It's name
-is `private`, prefixed by the name of your project (ie your team name).
+private network instead. This network is created by *Docker Compose*. Its name
+is `private`, prefixed by the name of your project (ie your team name). It's a network
+available to your containers only.
 
-This overlay network and its DNS make it possible for the containers to find each
+Thanks to this private network, multiple similar applications can coexist on the same
+Swarm.
+
+Also this overlay network and docker's DNS make it possible for the containers to find each
 other by their service names.
 
 # 4 - Connect to the other nodes
+
+The goal of this last step is to make all the applications communicate transparently.
+Every `words-dispatcher` will connect to the `words-java` deployed by all the teams.
 
 1. Stop the application currently running:
 
@@ -235,28 +244,34 @@ other by their service names.
   docker-compose logs
   ```
 
-Now, we changes the services so that some services are now part of multiple networks.
-A private, projects scoped, automatically created network and a shared
-pre-existing network. All services with the same name or alias on a shared network
-will be reachable with the same DNS name. A client can get all the IPs for
-the DNS name and start load balancing between the nodes.
+We changed the services so that some of them are now part of multiple networks.
+A `private` network, project scoped, automatically created and a shared
+pre-existing `lab-net` network.
+
+All the services with the same name or alias on a shared network
+will be reachable on the same DNS name. A client can get all the IPs for
+the DNS name and start load balancing between the nodes. Nothing complicated
+to setup!
+
 That's exactly what the `words-dispatcher` does. To bypass the DNS cache, it
 searches for all the IPs for the `works-java` services and uses a random one
 each time. This effectively load balances queries among all the teams.
 
-Try to add some words of your own and play with those "Cadavres Exquis"!!
+Try adding words of your own and play with those "Cadavres Exquis", Swarm style!
 
 # Docker Features demonstrated
 
-Last Devoxx & Mix-IT in 2015 was with docker 1.6
+Last Devoxx & Mix-IT in 2015 was with docker 1.6. Since then, a lot of features
+were added. Here's the short list of those we demonstrated with this lab.
 
-* Multi-host Networking - Docker 1.9
-* New compose file - Docker 1.10
-* Use links in networks - Docker 1.10
-* Network-wide container aliases - Docker 1.10
-* DNS discovery - Docker 1.11
-* Build in docker-compose up - Docker-Compose 1.7
+* Multi-host Networking - *Docker 1.9*
+* New compose file - *Docker 1.10*
+* Use links in networks - *Docker 1.10*
+* Network-wide container aliases - *Docker 1.10*
+* DNS discovery - *Docker 1.11*
+* Build in docker-compose up - *Docker-Compose 1.7*
 
-# About 'Cadavre Exquis'
+# About 'Cadavres Exquis'
 
-Cadavre Exquis is a French word game, you'll find more on this [wikipedia page](https://fr.wikipedia.org/wiki/Cadavre_exquis_(jeu)) (in French)
+Cadavres Exquis is a French word game, you'll find more on
+[wikipedia page](https://fr.wikipedia.org/wiki/Cadavre_exquis_(jeu)) (French)
