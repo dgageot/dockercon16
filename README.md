@@ -11,7 +11,7 @@ If you plan on attending this workshop, you need:
 * Test that your docker installation works fine:
   * `docker version` should show version `1.11` on both Client and Server side.
   * Run `docker run hello-world` and check you see the welcome message.
-  * Run `docker run -p 8080:80 nginx` and open your browser to the IP given by `docker-machine ip`, on port 8080. You should see nginx's default page.
+  * Run `docker run -p 8080:80 nginx:1.8.1-alpine` and open your browser to the IP given by `docker-machine ip`, on port 8080. You should see nginx's default page.
 * As network availability is often flaky at conferences, pull the base images we are going to use during the lab:
   * `docker pull dockerdemos/lab-web`
   * `docker pull dockerdemos/lab-words-dispatcher`
