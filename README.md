@@ -65,6 +65,19 @@ Our first version of the application is composed of four micro-services:
   docker-compose logs
   ```
 
+5. List the running containers:
+
+  ```
+  docker-compose ps
+
+    Name                       Command               State              Ports
+  ---------------------------------------------------------------------------------------------
+  labdocker_db-ui_1        tini -- node app                 Up      0.0.0.0:8081->8081/tcp
+  labdocker_db_1           /entrypoint.sh mongod            Up      27017/tcp
+  labdocker_web_1          nginx -g daemon off;             Up      443/tcp, 0.0.0.0:80->80/tcp
+  labdocker_words-java_1   java -DPROD_MODE=true -Xmx ...   Up      8080/tcp, 8888/tcp
+  ```
+
 ## Let's use the application
 
 Find the IP and port to the web UI and open a browser to that url:
