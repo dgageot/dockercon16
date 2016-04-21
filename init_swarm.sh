@@ -16,7 +16,7 @@ docker-machine create -d google --swarm --swarm-master \
     master
 
 for i in {1..5}; do
-  name=$(printf "%0.2d" $i)
+  name=$(printf "node-%0.2d" $i)
 
   docker-machine create -d google --swarm \
       --swarm-discovery="consul://$(docker-machine ip kv):8500" \
