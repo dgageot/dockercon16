@@ -7,7 +7,7 @@ services:
     links: ["words-java:words"]
 
   words-java:
-    build: words-java
+    image: dockerdemos/lab-words-java
     expose: ["8080"]
     links: ["db:mongo"]
 
