@@ -297,3 +297,8 @@ were added. Here's the short list of those we demonstrated with this lab.
 
 Cadavres Exquis is a French word game, you'll find more on
 [wikipedia page](https://fr.wikipedia.org/wiki/Cadavre_exquis_(jeu)) (French)
+
+# How did we create the swarm cluster ?
+
+The swarm cluster has been created on Google Cloud with the [init_swarm_google.sh](init_swarm_google.sh), You'll need an account and this may cost money.
+You can also try it on your own laptop by running the [init_swarm_virtualbox.sh](init_swarm_virtualbox.sh), you'll need virtualbox and `docker-machine`
