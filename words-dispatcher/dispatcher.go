@@ -18,7 +18,6 @@ func main() {
 
 func forward(host string, port int) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		log.Println(r.RequestURI)
 
 		addrs, err := net.LookupHost(host)
 		if err != nil {
@@ -27,12 +26,12 @@ func forward(host string, port int) func(w http.ResponseWriter, r *http.Request)
 			return
 		}
 
-		log.Println("all available ips", addrs)
+		log.Printf("%s %d available ips: %v", r.RequestURI, len(addrs), addrs)
 		ip := addrs[rand.Intn(len(addrs))]
-		log.Println("Choosen ip", ip)
+		log.Printf("%s I choose %s", r.RequestURI, ip)
 
 		url := fmt.Sprintf("http://%s:%d%s", ip, port, r.RequestURI)
-		log.Println("Asking to", url)
+		log.Printf("%s Calling %s", r.RequestURI, url)
 
 		resp, err := http.Get(url)
 		if err != nil {
