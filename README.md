@@ -7,6 +7,7 @@ If you plan on attending this workshop, you need:
 * A laptop + power cord
 * Install docker 1.11:
   * Install Toolbox for [windows](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.exe) or for [Mac](https://github.com/docker/toolbox/releases/download/v1.11.0/DockerToolbox-1.11.0.pkg)
+  * If you are on linux, and only on linux, grab [docker-compose v1.7](https://github.com/docker/compose/releases/download/1.7.0/docker-compose-Linux-x86_64) and put it in your path somewhere.
   * If you haven't done it already, register for the Docker for Desktop Beta at https://beta.docker.com, and give us your hub account name during the sessioni. We can probably do something for you.
 * Test that your docker installation works fine:
   * `docker version` should show version `1.11` on both Client and Server side.
@@ -18,6 +19,7 @@ If you plan on attending this workshop, you need:
   * `docker pull dockerdemos/lab-words-java`
   * `docker pull mongo-express:0.30.43`
   * `docker pull mongo:3.2.4`
+* Get the source of the lab by `git clone git@github.com:CodeStory/lab-docker.git`
 
 ## 1 - Look Ma', micro-services on my machine
 
