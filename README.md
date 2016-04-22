@@ -21,7 +21,7 @@ If you plan on attending this workshop, you need:
   * `docker pull mongo:3.2.4`
 * Get the source of the lab by `git clone git@github.com:CodeStory/lab-docker.git`
 
-## 1 - Look Ma', micro-services on my machine
+## 1 - Look Ma', micro-services on my laptop
 
 Our first version of the application is composed of four micro-services:
 
@@ -108,7 +108,7 @@ Use this command to find the url for the UI:
 docker-compose port db-ui 8081
 ```
 
-**Careful**, all words added to the databse at this stage will be lost for the
+**Careful**, all words added to the database at this stage will be lost for the
 next stages.
 
 # 2 - Run the application with a dispatcher
@@ -201,7 +201,7 @@ the certificates on them. Then follow the instructions below:
 
   ```
   export DOCKER_TLS_VERIFY="1"
-  export DOCKER_HOST="tcp://130.211.71.5:3376"
+  export DOCKER_HOST="tcp://xxx.xxx.xxx.xxx:xxxx"
   export DOCKER_CERT_PATH="path_to_certificates"
   ```
 
@@ -235,11 +235,9 @@ private network instead. This network is created by *Docker Compose*. Its name
 is `private`, prefixed by the name of your project (ie your team name). It's a network
 available to your containers only.
 
-Thanks to this private network, multiple similar applications can coexist on the same
-Swarm.
+Thanks to this private network, multiple similar applications can coexist on the same Swarm.
 
-Also this overlay network and docker's DNS make it possible for the containers to find each
-other by their service names.
+Also this overlay network and docker's DNS make it possible for the containers to find each other by their service names.
 
 # 4 - Connect to the other nodes
 
@@ -298,9 +296,9 @@ were added. Here's the short list of those we demonstrated with this lab.
 # About 'Cadavres Exquis'
 
 Cadavres Exquis is a French word game, you'll find more on
-[wikipedia page](https://fr.wikipedia.org/wiki/Cadavre_exquis_(jeu)) (French)
+[wikipedia page](https://fr.wikipedia.org/wiki/Cadavre_exquis_(jeu)) (in French)
 
 # How did we create the swarm cluster ?
 
-The swarm cluster has been created on Google Cloud with the [init_swarm_google.sh](init_swarm_google.sh), You'll need an account and this may cost money.
+The swarm cluster has been created on Google Cloud with the [init_swarm_google.sh](init_swarm_google.sh) script. Take a look to what we do there but you'll need an account and this may cost you money.
 You can also try it on your own laptop by running the [init_swarm_virtualbox.sh](init_swarm_virtualbox.sh), you'll need virtualbox and `docker-machine`
