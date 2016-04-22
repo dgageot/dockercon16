@@ -198,7 +198,7 @@ the certificates on them. Then follow the instructions below:
 
   ```
   export DOCKER_TLS_VERIFY="1"
-  export DOCKER_HOST="tcp://146.148.9.22:3376"
+  export DOCKER_HOST="tcp://130.211.71.5:3376"
   export DOCKER_CERT_PATH="path_to_certificates"
   ```
 
