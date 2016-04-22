@@ -3,10 +3,12 @@ version: '2'
 services:
   web:
     build: web
+    image: dockerdemos/lab-web
     ports: ["80:80"]
     links: ["words-java:words"]
 
   words-java:
+    build: words-java
     image: dockerdemos/lab-words-java
     expose: ["8080"]
     links: ["db:mongo"]
