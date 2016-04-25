@@ -250,6 +250,7 @@ Also this overlay network and docker's DNS make it possible for the containers t
   * You have now 5 words-java containers. Check their numbers with `docker-compose ps`
   * Point your browser to the web container on the swarm cluster, don't forget the container can run anywhere on the swarm cluster. You'll find the correct ip/port by issuing `docker-compose port web 80`. You'll likely see the differents words coming from differents `word-java` ip.
   * Start `docker-compose logs -f` and refresh your browser, pay attention to the logs from the dispatcher.
+  * Connect to one of the containers `docker exec -ti labdocker_words_1 sh` and do a `nslookup words-java` see that there is 5 values for the entry.
 
 # 4 - Connect to the other nodes
 
