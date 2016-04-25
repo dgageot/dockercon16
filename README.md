@@ -227,18 +227,6 @@ to scope the whole project to your team name.
 
 The same application that ran on you machine now runs in the Cloud on a shared Swarm.
 
-## What to explore in this step
-
-1. You can check that consul is correctly running, by checking the numbers of nodes it runs
-  * Find the Consul server ip by running : `docker-machine ip kv`
-  * Then points your browser to `http://{consul-server-ip}/:8500/ui/#/dc1/kv/docker/nodes/`
-
-2. You can try to scale the numbers of `words-java` nodes and see how the dispatcher react.
-  * Add 4 more `words-java` node by issuing `docker-compose scale words-java=4`.
-  * You have now 5 words-java containers. Check their numbers with `docker-compose ps`
-  * Point your browser to the web container on the swarm cluster, don't forget the container can run anywhere on the swarm cluster. You'll find the correct ip/port by issuing `docker-compose port web 80`. You'll likely see the differents words coming from differents `word-java` ip.
-  * Start `docker-compose logs -f` and refresh your browser, pay attention to the logs from the dispatcher.
-
 ## How is that possible?
 
 If you compare [docker-compose-v2.yml](docker-compose-v2.yml) and [docker-compose-v3.yml](docker-compose-v3.yml)
@@ -250,6 +238,18 @@ available to your containers only.
 Thanks to this private network, multiple similar applications can coexist on the same Swarm.
 
 Also this overlay network and docker's DNS make it possible for the containers to find each other by their service names.
+
+## What to explore in this step
+
+1. You can check that consul is correctly running, by checking the numbers of nodes it runs
+  * Find the Consul server ip by running : `docker-machine ip kv`
+  * Then points your browser to `http://{consul-server-ip}/:8500/ui/#/dc1/kv/docker/nodes/`
+
+2. You can try to scale the numbers of `words-java` nodes and see how the dispatcher react.
+  * Add 4 more `words-java` node by issuing `docker-compose scale words-java=4`.
+  * You have now 5 words-java containers. Check their numbers with `docker-compose ps`
+  * Point your browser to the web container on the swarm cluster, don't forget the container can run anywhere on the swarm cluster. You'll find the correct ip/port by issuing `docker-compose port web 80`. You'll likely see the differents words coming from differents `word-java` ip.
+  * Start `docker-compose logs -f` and refresh your browser, pay attention to the logs from the dispatcher.
 
 # 4 - Connect to the other nodes
 
