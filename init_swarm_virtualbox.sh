@@ -15,7 +15,7 @@ docker-machine create -d virtualbox --swarm --swarm-master \
     --engine-opt="cluster-advertise=eth1:2376" \
     master
 
-for i in {1..5}; do
+for i in {1..3}; do
   name=$(printf "node-%0.2d" $i)
 
   docker-machine create -d virtualbox --swarm \
