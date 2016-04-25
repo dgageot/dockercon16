@@ -227,11 +227,11 @@ to scope the whole project to your team name.
 
 The same application that ran on you machine now runs in the Cloud on a shared Swarm.
 
-## What do explore in this step
+## What to explore in this step
 
 1. You can check that consul is correctly running, by checking the numbers of nodes it runs
   * Find the Consul server ip by running : `docker-machine ip kv`
-  * Then point your browser to `http://{consul-server-ip}/:8500/ui/#/dc1/kv/docker/nodes/`
+  * Then points your browser to `http://{consul-server-ip}/:8500/ui/#/dc1/kv/docker/nodes/`
 
 2. You can try to scale the numbers of `words-java` nodes and see how the dispatcher react.
   * Add 4 more `words-java` node by issuing `docker-compose scale words-java=4`.
