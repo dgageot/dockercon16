@@ -101,13 +101,23 @@ http `GET` queries to the `nginx` that proxies the `words-java` REST service.
 On each query, the `words-java` loads all the words from the database and chooses
 a random one.
 
-The `db-ui` web UI can be used to configure the list of words in the database.
-Use this command to find the url for the UI:
+## What to explore in this step
 
-```
+1. The `db-ui` web UI can be used to configure the list of words in the database.
+  * Use this command to find the url for the UI: `docker-compose port db-ui 8081`
+  * Add some nouns, adjectives and verbs, use non-plural and male noun and adjectives, or the grammar will not be correct.
+  * **Careful**, all words added to the database at this stage will be lost for the next stages.
 
-**Careful**, all words added to the database at this stage will be lost for the
-next stages.
+2. You can fiddle with the code from the ui.
+  * try to change something in `web/static/index.html`
+  * then `docker-compose up --build -d`, see how this only stop & restart the correct container.
+  * **Careful**, If you are on a slow network, this can be troublesome, as you're going to download new files.
+
+3. Things to check in this step
+  * Notice the db connexion string in `words-java/src/main/java/Main.java`
+  * Notice the nginx configuration in `web/default.conf` on `location /words/` and check the corresponding code in `web/static/app.js`
+  * Notice in the `docker-compose-v1.yml` file some services have `build` and `image` instructions while others have only `image`
+  * Notice the `Ports` vs `Exposes` instructions, try to find a way to call the `/verb` instruction on the `words-java`, without changing the `yml` file.
 
 # 2 - Run the application with a dispatcher
 
@@ -276,7 +286,7 @@ Every `words-dispatcher` will connect to the `words-java` deployed by all the te
   cp docker-compose-v4.yml docker-compose.yml
   ```
 
-3. Build and start the application:
+3. Start the application:
 
   ```
   docker-compose up -d
