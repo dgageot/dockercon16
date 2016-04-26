@@ -185,6 +185,15 @@ All we have to do is:
 As a user, you should see no difference compared to the original application.
 That's the whole point!
 
+## What to explore in this step
+
+1. Check the logs and see the dispatcher in action
+  * Run `docker-compose logs -f` and refresh your page at will, check the dispatcher work described in the logs.
+
+2. Check the dispatcher code
+  * Especially the `forward` function in the `words-dispatcher/dispatcher.go` source.
+  * **carefull** this code is not really efficient but it serves well the purpose of this workshop
+
 # 3 - Run the application on a shared Swarm
 
 We are going to the Cloud! Your containers will be send to a shared Swarm
