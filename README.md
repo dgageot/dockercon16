@@ -58,7 +58,7 @@ Our first version of the application is composed of four micro-services:
 3. Build and start the application:
 
   ```
-  docker-compose up --build -d
+  docker-compose up -d
   ```
 
 4. Take a look at the logs, to see if there's any error:
@@ -104,8 +104,6 @@ a random one.
 The `db-ui` web UI can be used to configure the list of words in the database.
 Use this command to find the url for the UI:
 
-```
-docker-compose port db-ui 8081
 ```
 
 **Careful**, all words added to the database at this stage will be lost for the
@@ -281,7 +279,7 @@ Every `words-dispatcher` will connect to the `words-java` deployed by all the te
 3. Build and start the application:
 
   ```
-  docker-compose up --build -d
+  docker-compose up -d
   docker-compose logs
   ```
 
