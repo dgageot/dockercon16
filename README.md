@@ -317,6 +317,16 @@ each time. This effectively load balances queries among all the teams.
 
 Try adding words of your own and play with those "Cadavres Exquis", Swarm style!
 
+## What to explore in this step
+
+1. Try adding some specific word again. ( remember the data you typed in on step 1 is not on the cluster )
+  * Use this command to find the url for the UI: `docker-compose port db-ui 8081`
+  * Add some words.
+
+2. Lookup one of the IP address below one of the words, and check with `docker ps` to which group it belongs.
+
+3. Notice how the `lab-net` network is not created during the initial `docker-compose up` if you check the various init script, they are created there.
+
 # Docker Features demonstrated
 
 Last Devoxx & Mix-IT in 2015 was with docker 1.6. Since then, a lot of features
