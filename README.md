@@ -199,10 +199,16 @@ the certificates on them. Then follow the instructions below:
 
 3. Point your docker client to the proper machine:
 
+If you are on the Google cloud swarm cluster
   ```
   export DOCKER_TLS_VERIFY="1"
   export DOCKER_HOST="tcp://xxx.xxx.xxx.xxx:xxxx"
-  export DOCKER_CERT_PATH="path_to_certificates"
+  export DOCKER_CERT_PATH="full_path_to_certificates"
+  ```
+
+if you are running in your local swarm cluster in virtualbox
+  ```
+  eval $(docker-machine env master)
   ```
 
 4. Confirm that `docker info` shows multiple nodes.
@@ -250,7 +256,7 @@ Also this overlay network and docker's DNS make it possible for the containers t
   * You have now 5 words-java containers. Check their numbers with `docker-compose ps`
   * Point your browser to the web container on the swarm cluster, don't forget the container can run anywhere on the swarm cluster. You'll find the correct ip/port by issuing `docker-compose port web 80`. You'll likely see the differents words coming from differents `word-java` ip.
   * Start `docker-compose logs -f` and refresh your browser, pay attention to the logs from the dispatcher.
-  * Connect to one of the containers `docker exec -ti labdocker_words_1 sh` and do a `nslookup words-java` see that there is 5 values for the entry.
+  * Connect to one of the containers `docker exec -ti labdocker_words_1 sh` and do a `nslookup words-java` (change `labdocker` with your team prefix) see that there is 5 values for the entry.
 
 # 4 - Connect to the other nodes
 
