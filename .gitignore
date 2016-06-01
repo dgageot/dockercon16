@@ -2,3 +2,4 @@
 *.iml
 target/
 docker-compose.yml
+images.tar
