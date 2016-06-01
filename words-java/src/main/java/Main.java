@@ -17,13 +17,13 @@ public class Main {
         DB db = new MongoClient("mongo:27017").getDB("lab-docker");
         Jongo jongo = new Jongo(db);
 
-        Words verbs = new Words(jongo, "verbs");
         Words nouns = new Words(jongo, "nouns");
+        Words verbs = new Words(jongo, "verbs");
         Words adjectives = new Words(jongo, "adjectives");
 
-        verbs.addIfEmpty("boiras", "explose", "fait fumer", "endors", "marche vers");
-        nouns.addIfEmpty("le cadavre", "l'éléphant", "le langage scala", "le laptop");
-        adjectives.addIfEmpty("exquis", "rose", "un peu pourri", "rouge", "flottant", "du programmeur");
+        nouns.addIfEmpty("dead body", "elephant", "scala language", "laptop");
+        verbs.addIfEmpty("will drink", "smashes", "smokes", "eats", "walks towards");
+        adjectives.addIfEmpty("the exquisite", "a pink", "the rotten", "a red", "the flotting", "a broken");
 
         String hostname = InetAddress.getLocalHost().getHostAddress();
 
