@@ -12,14 +12,16 @@ If you plan on attending this workshop, you need:
 * Test that your docker installation works fine:
   * `docker version` should show version `1.11` on both Client and Server side.
   * Run `docker run hello-world` and check you see the welcome message.
-  * Run `docker run -p 8080:80 nginx:1.8.1-alpine` and open your browser to the IP given by `docker-machine ip`, on port 8080. You should see nginx's default page.
-* As network availability is often flaky at conferences, pull the base images we are going to use during the lab:
+* Get the source of the lab by `git clone git@github.com:CodeStory/lab-docker.git`
+* During the workshop, we'll distribute USB keys with the docker images we need for the lab:
+  * `cd lab-docker`
+  * `docker load -i images.tar` will load all the images you need.
+* As an alternate solution, you can load the images directly from the hub:
   * `docker pull dockerdemos/lab-web`
   * `docker pull dockerdemos/lab-words-dispatcher`
   * `docker pull dockerdemos/lab-words-java`
   * `docker pull mongo-express:0.30.43`
   * `docker pull mongo:3.2.4`
-* Get the source of the lab by `git clone git@github.com:CodeStory/lab-docker.git`
 
 ## 1 - Look Ma', micro-services on my laptop
 
