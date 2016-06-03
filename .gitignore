@@ -3,3 +3,4 @@
 target/
 docker-compose.yml
 images.tar
+certificates
