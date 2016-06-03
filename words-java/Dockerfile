@@ -10,7 +10,7 @@ RUN mkdir -p /usr/share/maven \
 
 WORKDIR /home/lab
 ENTRYPOINT ["java", "-DPROD_MODE=true", "-Xmx128m", "-jar", "target/words.jar"]
-EXPOSE 8888
+EXPOSE 8080
 
 ADD pom.xml .
 RUN mvn verify -DskipTests --fail-never
