@@ -87,7 +87,10 @@ Find the IP and port to the web UI and open a browser to that url:
   ```
   docker-compose port web 80
   ```
-If you get `0.0.0.0` as an answer on the command above, don't use it and use the output of `docker-machine ip default` instead as the ip address.
+
+Be careful, with `docker-machine`, only the port is a valid output.
+The IP address should be replaced with the result of `docker-machine ip default`
+instead as the ip address.
 
 Each time the page is refreshed, you will see a sentence composed of 5 random
 words: a noun, an adjective, a verb, a noun and an adjective. That's a "Cadavre
