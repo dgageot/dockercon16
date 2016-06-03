@@ -219,8 +219,8 @@ the certificates on them. Then follow the instructions below:
 If you are on the Google cloud swarm cluster
   ```
   export DOCKER_TLS_VERIFY="1"
-  export DOCKER_HOST="tcp://xxx.xxx.xxx.xxx:xxxx"
-  export DOCKER_CERT_PATH="full_path_to_certificates"
+  export DOCKER_HOST="tcp://104.155.27.61:3376"
+  export DOCKER_CERT_PATH="$(pwd)/certificates"
   ```
 
 if you are running in your local swarm cluster in virtualbox
