@@ -11,23 +11,39 @@ body {
 
 .line {
 	margin-bottom: 30px;
+	transform: translateX(-100%);
+}
+
+.slide-in {
+    animation: slide-in .5s forwards;
+}
+
+.line3.slide-in {
+    animation: slide-in 1s forwards;
+}
+
+.line2.slide-in {
+    animation: slide-in 1.5s forwards;
+}
+
+@keyframes slide-in {
+  100% { transform: translateX(0%); }
 }
 
 .result {
-	display: inline-block;
 	position: relative;
 	display: inline-block;
-	padding: 10px 20px 30px 20px;
+	padding: 15px 20px 25px 20px;
 	margin: 0 5px 10px 5px;
 	color: white;
 	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3);
-	height: 42px;
-	min-width: 30px;
+	height: 60px;
+	width: 330px;
 }
 
 .result .word {
 	font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B', sans-serif;
-	font-size: 32px;
+	font-size: 40px;
 	color: white;
 }
 
