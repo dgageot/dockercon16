@@ -9,4 +9,7 @@ for folder in $folders; do
   docker push dockerdemos/lab-$folder
 done
 
+docker pull mongo-express:0.30.43
+docker pull mongo:3.2.4
+
 docker save -o images.tar dockerdemos/lab-web dockerdemos/lab-words-dispatcher dockerdemos/lab-words-java mongo-express:0.30.43 mongo:3.2.4
