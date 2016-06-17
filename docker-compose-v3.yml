@@ -6,6 +6,7 @@ services:
     ports: ["80"]
     networks: ["private"]
     depends_on: ["words"]
+    volumes: ["./web/static:/usr/share/nginx/html"]
 
   words:
     image: dockerdemos/lab-words-dispatcher

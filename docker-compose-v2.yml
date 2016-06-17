@@ -6,6 +6,7 @@ services:
     image: dockerdemos/lab-web
     ports: ["80:80"]
     links: ["words-dispatcher:words"]
+    volumes: ["./web/static:/usr/share/nginx/html"]
 
   words-dispatcher:
     build: words-dispatcher
