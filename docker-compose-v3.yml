@@ -2,19 +2,22 @@ version: '2'
 
 services:
   web:
+    build: web
     image: dockerdemos/lab-web
-    ports: ["80"]
+    ports: ["80:80"]
     networks: ["private"]
     depends_on: ["words"]
     volumes: ["./web/static:/usr/share/nginx/html"]
 
   words:
+    build: words-dispatcher
     image: dockerdemos/lab-words-dispatcher
     expose: ["8080"]
     networks: ["private"]
     depends_on: ["words-java"]
 
   words-java:
+    build: words-java
     image: dockerdemos/lab-words-java
     expose: ["8080"]
     networks: ["private"]
