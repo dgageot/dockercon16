@@ -15,15 +15,15 @@ body {
 }
 
 .slide-in {
-    animation: slide-in .5s forwards;
+    animation: slide-in .5s forwards ease-in;
 }
 
 .line3.slide-in {
-    animation: slide-in 1s forwards;
+    animation: slide-in 1s forwards ease-in;
 }
 
 .line2.slide-in {
-    animation: slide-in 1.5s forwards;
+    animation: slide-in 1.2s forwards ease-in;
 }
 
 @keyframes slide-in {
@@ -33,11 +33,11 @@ body {
 .result {
 	position: relative;
 	display: inline-block;
-	padding: 50px 20px 25px 20px;
-	margin: 0 5px 10px 5px;
+	padding: 0 20px;
+	margin: 0 8px;
 	color: white;
 	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3);
-	height: 100px;
+	height: 175px;
 	width: 330px;
 }
 
@@ -45,6 +45,8 @@ body {
 	font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B', sans-serif;
 	font-size: 40px;
 	color: white;
+	line-height: 175px;
+	vertical-align: middle;
 }
 
 .result .hostname {
