@@ -25,7 +25,8 @@ public class Main {
         verbs.addIfEmpty("will drink", "smashes", "smokes", "eats", "walks towards", "loves", "helps");
         adjectives.addIfEmpty("the exquisite", "a pink", "the rotten", "a red", "the floating", "a broken", "a shiny", "the pretty");
 
-        String hostname = InetAddress.getLocalHost().getHostAddress();
+        // String hostname = InetAddress.getLocalHost().getHostAddress();
+        String hostname = InetAddress.getLocalHost().getHostName();
 
         new WebServer().configure(routes -> routes
                 .filter(LogRequestFilter.class)
