@@ -3,11 +3,13 @@
 <head>
   <meta charset="utf-8">
   <title>Docker Lab - Cadavres exquis</title>
+  <link rel="stylesheet" href="font.css">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 <div class="sentence" ng-controller="LabCtrl">
+  <div class="line">
   <span class="result adjective">
     <span class="word" ng-bind="adjective1.word"></span>
     <span class="hostname" ng-bind="adjective1.hostname"></span>
@@ -16,10 +18,14 @@
     <span class="word" ng-bind="noun1.word"></span>
     <span class="hostname" ng-bind="noun1.hostname"></span>
   </span>
+  </div>
+  <div class="line">
   <span class="result verb">
     <span class="word" ng-bind="verb.word"></span>
     <span class="hostname" ng-bind="verb.hostname"></span>
   </span>
+  </div>
+  <div class="line">
   <span class="result adjective">
     <span class="word" ng-bind="adjective2.word"></span>
     <span class="hostname" ng-bind="adjective2.hostname"></span>
@@ -28,7 +34,7 @@
     <span class="word" ng-bind="noun2.word"></span>
     <span class="hostname" ng-bind="noun2.hostname"></span>
   </span>
-  <!-- <img src="share.png" ng-click="share()"/> -->
+  </div>
 </div>
 </body>
 

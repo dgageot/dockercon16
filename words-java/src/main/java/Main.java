@@ -21,9 +21,9 @@ public class Main {
         Words verbs = new Words(jongo, "verbs");
         Words adjectives = new Words(jongo, "adjectives");
 
-        nouns.addIfEmpty("dead body", "elephant", "scala language", "laptop");
-        verbs.addIfEmpty("will drink", "smashes", "smokes", "eats", "walks towards");
-        adjectives.addIfEmpty("the exquisite", "a pink", "the rotten", "a red", "the flotting", "a broken");
+        nouns.addIfEmpty("dead body", "elephant", "go language", "laptop", "container", "micro-service");
+        verbs.addIfEmpty("will drink", "smashes", "smokes", "eats", "walks towards", "loves", "helps");
+        adjectives.addIfEmpty("the exquisite", "a pink", "the rotten", "a red", "the floating", "a broken", "a shiny", "the pretty");
 
         String hostname = InetAddress.getLocalHost().getHostAddress();
 

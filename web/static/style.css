@@ -1,26 +1,22 @@
-@font-face {
-  font-family: 'Indie Flower';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Indie Flower'), local('IndieFlower'), url('IndieFlower.ttf') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-
 body {
 	text-align: center;
 	margin: 0;
 	padding: 0;
+	background-color: #e9f0f1;
 }
 
 .sentence {
 	margin: 100px auto 0 auto;
 }
 
+.line {
+	margin-bottom: 30px;
+}
+
 .result {
 	display: inline-block;
 	position: relative;
 	display: inline-block;
-	border: 2px solid;
 	padding: 10px 20px 30px 20px;
 	margin: 0 5px 10px 5px;
 	color: white;
@@ -30,7 +26,7 @@ body {
 }
 
 .result .word {
-	font-family: 'Indie Flower', cursive;
+	font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B', sans-serif;
 	font-size: 32px;
 	color: white;
 }
@@ -39,25 +35,22 @@ body {
 	position: absolute;
 	width: 100%;
 	left: 0;
-	bottom: 0;
+	bottom: 5px;
 	font-size: 0.8em;
 	height: 14px;
 }
 
 .noun {
-	background-color: dodgerblue;
-	border-color: #1e83f1;
+	background-color: rgb(255, 25, 79);
 	transform: rotate(1deg);
 }
 
 .verb {
-	background-color: orangered;
-	border-color: #e84000;
-	transform: rotate(1deg);
+	background-color: rgb(36, 175, 255);
+	transform: rotate(-1deg);
 }
 
 .adjective {
-	background-color: forestgreen;
-	border-color: #1c721c;
+	background-color: rgb(57, 77, 83);
 	transform: rotate(-1deg);
 }
