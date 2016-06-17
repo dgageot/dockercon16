@@ -19,11 +19,6 @@ services:
     expose: ["8080"]
     links: ["db:mongo"]
 
-  db-ui:
-    image: mongo-express:0.30.43
-    ports: ["8081:8081"]
-    links: ["db:mongo"]
-
   db:
     image: mongo:3.2.4
     expose: ["27017"]

@@ -19,12 +19,6 @@ services:
     networks: ["private"]
     depends_on: ["mongo"]
 
-  db-ui:
-    image: mongo-express:0.30.43
-    ports: ["8081"]
-    networks: ["private"]
-    depends_on: ["mongo"]
-
   mongo:
     image: mongo:3.2.4
     expose: ["27017"]
