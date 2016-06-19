@@ -7,13 +7,10 @@ services:
     volumes: ["./web/static:/usr/share/nginx/html"]
     ports: ["80:80"]
     depends_on: ["words"]
-    networks: ["lab"]
 
   words:
     build: words-dispatcher
     image: dockerdemos/lab-words-dispatcher
-    depends_on: ["words-java"]
-    networks: ["lab"]
 
   words-java:
     build: words-java
@@ -21,11 +18,6 @@ services:
     depends_on: ["mongo"]
     # ports: ["5005:5005"]
     # command: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
-    networks: ["lab"]
 
   mongo:
     image: mongo:3.2.4
-    networks: ["lab"]
-
-networks:
-  lab:
