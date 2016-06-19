@@ -2,8 +2,6 @@
 
 set -e
 
-cp docker-compose-v1.yml docker-compose.yml
-
 docker-compose build
 docker-compose push
 docker-compose pull db
