@@ -38,13 +38,13 @@ public class Main {
 
         switch (set) {
             case "nouns":
-                words.addIfEmpty("dead body", "elephant", "go language", "laptop", "container", "micro-service");
+                words.addIfEmpty("dead body", "elephant", "go language", "laptop", "container", "micro-service", "turtle", "whale");
                 break;
             case "verbs":
-                words.addIfEmpty("will drink", "smashes", "smokes", "eats", "walks towards", "loves", "helps");
+                words.addIfEmpty("will drink", "smashes", "smokes", "eats", "walks towards", "loves", "helps", "pushes", "debugs");
                 break;
             case "adjectives":
-                words.addIfEmpty("the exquisite", "a pink", "the rotten", "a red", "the floating", "a broken", "a shiny", "the pretty");
+                words.addIfEmpty("the exquisite", "a pink", "the rotten", "a red", "the floating", "a broken", "a shiny", "the pretty", "the impressive", "an awesome");
                 break;
         }
 
