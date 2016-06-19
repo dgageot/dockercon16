@@ -1,6 +1,5 @@
 .idea/
 *.iml
 target/
-docker-compose.yml
 images.tar
 certificates

@@ -4,30 +4,27 @@ services:
   web:
     build: web
     image: dockerdemos/lab-web
-    ports: ["80:80"]
-    networks: ["private"]
-    depends_on: ["words"]
     volumes: ["./web/static:/usr/share/nginx/html"]
+    ports: ["80:80"]
+    depends_on: ["words"]
+    networks: ["private"]
 
   words:
     build: words-dispatcher
     image: dockerdemos/lab-words-dispatcher
-    expose: ["8080"]
-    networks: ["private"]
     depends_on: ["words-java"]
+    networks: ["private"]
 
   words-java:
     build: words-java
     image: dockerdemos/lab-words-java
-    expose: ["8080"]
-    networks: ["private"]
     depends_on: ["mongo"]
     # ports: ["5005:5005"]
     # command: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
+    networks: ["private"]
 
   mongo:
     image: mongo:3.2.4
-    expose: ["27017"]
     networks: ["private"]
 
 networks:
