@@ -12,8 +12,8 @@ WORKDIR /home/lab
 ENTRYPOINT ["java", "-DPROD_MODE=true", "-Xmx32m", "-jar", "target/words.jar"]
 EXPOSE 8080
 
-ADD pom.xml .
+COPY pom.xml .
 RUN mvn verify -DskipTests --fail-never
 
-ADD . ./
+COPY . ./
 RUN mvn verify
