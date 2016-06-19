@@ -42,10 +42,12 @@ body {
 }
 
 .result .word {
+	display: inline-block;
 	font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B', sans-serif;
 	font-size: 40px;
 	color: white;
 	line-height: 175px;
+	height: 175px;
 	vertical-align: middle;
 }
 
