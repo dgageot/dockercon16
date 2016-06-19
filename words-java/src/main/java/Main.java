@@ -1,38 +1,40 @@
+import com.google.common.base.Supplier;
+import com.google.common.base.Suppliers;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
 import net.codestory.http.WebServer;
-import net.codestory.http.filters.log.*;
+import net.codestory.http.filters.log.LogRequestFilter;
 import org.jongo.Jongo;
 
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings("ALL")
 public class Main {
-    private static final Random random = new Random();
-
     public static void main(String[] args) throws UnknownHostException {
-        String hostname = InetAddress.getLocalHost().getHostName();
-
-        WordResponse verb = new WordResponse(randomWord("verbs"), hostname);
-        WordResponse adjective = new WordResponse(randomWord("adjectives"), hostname);
-        WordResponse noun = new WordResponse(randomWord("nouns"), hostname);
+        Supplier<WordResponse> verb = Suppliers.memoize(() -> randomWord("verbs"));
+        Supplier<WordResponse> adjective = Suppliers.memoize(() -> randomWord("adjectives"));
+        Supplier<WordResponse> noun = Suppliers.memoize(() -> randomWord("nouns"));
 
         new WebServer().configure(routes -> routes
                 .filter(LogRequestFilter.class)
-                .get("/verb", verb)
-                .get("/adjective", adjective)
-                .get("/noun", noun)
+                .filter(AddHostName.class)
+                .get("/verb", () -> {
+                    return verb.get();
+                })
+                .get("/adjective", () -> {
+                    return adjective.get();
+                })
+                .get("/noun", () -> {
+                    return noun.get();
+                })
         ).start();
     }
 
-    private static String randomWord(String set) {
-        // see https://github.com/bguerout/jongo/issues/289
-        DB db = new MongoClient("mongo:27017").getDB("lab-docker");
-
-        Jongo jongo = new Jongo(db);
-        Words words = new Words(jongo, set);
+    private static WordResponse randomWord(String set) {
+        Words words = new Words(createJongo(), set);
 
         switch (set) {
             case "nouns":
@@ -48,16 +50,16 @@ public class Main {
 
         Random random = new Random();
         List<String> all = words.all();
-        return all.get(random.nextInt(all.size()));
+        String word = all.get(random.nextInt(all.size()));
+
+        return new WordResponse(word, null);
     }
 
-    public static class WordResponse {
-        String word;
-        String hostname;
+    private static Jongo createJongo() {
+        DB db = new MongoClient("mongo:27017", new MongoClientOptions.Builder()
+                .serverSelectionTimeout(2000)
+                .build()).getDB("lab-docker");
 
-        WordResponse(String word, String hostname) {
-            this.word = word;
-            this.hostname = hostname;
-        }
+        return new Jongo(db);
     }
 }
