@@ -14,8 +14,7 @@ services:
   words-java:
     build: words-java
     image: dockerdemos/lab-words-java
-    # ports: ["5005:5005"]
-    # command: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
+    ports: ["5005:5005"]
 
   mongo:
     image: mongo:3.2.4
