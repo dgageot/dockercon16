@@ -17,4 +17,4 @@ services:
     ports: ["5005:5005"]
 
   mongo:
-    image: mongo:3.2.4
+    image: mongo:3.3.8
