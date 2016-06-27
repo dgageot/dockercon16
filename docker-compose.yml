@@ -3,18 +3,13 @@ version: '2'
 services:
   web:
     build: web
-    image: dockerdemos/lab-web
+    image: ndeloof/lab-web
     volumes: ["./web/static:/usr/share/nginx/html"]
     ports: ["80:80"]
 
   words:
-    build: words-dispatcher
-    image: dockerdemos/lab-words-dispatcher
-
-  words-java:
     build: words-java
-    image: dockerdemos/lab-words-java
-    ports: ["5005:5005"]
+    image: ndeloof/lab-words-java
 
   mongo:
     image: mongo:3.3.8
