@@ -7,24 +7,8 @@ services:
     ports: ["80:80"]
     # environment:
     #   - "constraint:node==jcoucp0-ucpnode"
-
-  # words:
-  #   build: words-dispatcher
-  #   image: dockerdemos/lab-words-dispatcher
-
-  # words-java:
-  #   build: words-java
-  #   image: dockerdemos/lab-words-java
-    # ports: ["8080:8080"]
   
-  # words-aspnet-nancy:
-
-  #   build: words-aspnet-nancy
-  #   # image: dockerdemos/lab-words-aspnet
-  #   ports: ["5000:5000"]
   words-aspnet:
     build: words-aspnet
     # image: dockerdemos/lab-words-aspnet
-    ports: ["5000:5000"]
-  # mongo:
-  #   image: mongo:3.3.8
+    # ports: ["5000:5000"]
