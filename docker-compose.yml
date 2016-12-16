@@ -3,20 +3,28 @@ version: '2'
 services:
   web:
     build: web
-    image: dockerdemos/lab-web
     volumes: ["./web/static:/usr/share/nginx/html"]
     ports: ["80:80"]
     # environment:
     #   - "constraint:node==jcoucp0-ucpnode"
 
-  words:
-    build: words-dispatcher
-    image: dockerdemos/lab-words-dispatcher
+  # words:
+  #   build: words-dispatcher
+  #   image: dockerdemos/lab-words-dispatcher
 
-  words-java:
-    build: words-java
-    image: dockerdemos/lab-words-java
-    # ports: ["5005:5005"]
+  # words-java:
+  #   build: words-java
+  #   image: dockerdemos/lab-words-java
+    # ports: ["8080:8080"]
+  
+  # words-aspnet-nancy:
 
-  mongo:
-    image: mongo:3.3.8
+  #   build: words-aspnet-nancy
+  #   # image: dockerdemos/lab-words-aspnet
+  #   ports: ["5000:5000"]
+  words-aspnet:
+    build: words-aspnet
+    # image: dockerdemos/lab-words-aspnet
+    ports: ["5000:5000"]
+  # mongo:
+  #   image: mongo:3.3.8

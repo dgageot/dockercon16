@@ -16,7 +16,7 @@ lab.controller('LabCtrl', function ($scope, $http) {
         $scope.noun2 = data;
     });
     $http.get('/words/adjective').success(function(data) {
-        data.word = data.word.charAt(0).toUpperCase() + data.word.substr(1)
+        //data.word = data.word.charAt(0).toUpperCase() + data.word.substr(1)
         $scope.adjective1 = data;
     });
     $http.get('/words/adjective').success(function(data) {
