@@ -1,10 +1,9 @@
-# Cadavres Exquis "DockerCon 2016 edition"
+# Cadavres Exquis / AspNetCore forked from "DockerCon 2016 edition"
 
 ## Setup
 
 ```
 docker-compose build
-docker-compose pull
 ```
 
 ## Start
@@ -18,7 +17,7 @@ Open a browser on `http://localhost`. Refresh. It should always be the same rand
 ## Scale the backend
 
 ```
-docker-compose scale words-java=20
+docker-compose scale words-aspnet=20
 ```
 
 Open a browser on `http://localhost`. Refresh. It should be a new random sentence each time.

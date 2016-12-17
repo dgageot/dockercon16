@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace words_aspnet.Controllers
 {
-    [Route("")]
+    [Route("api/[controller]")]
     public class WordsController : Controller
     {
         private readonly IWordsProvider _wordsProvider = new WordsProvider();
@@ -17,22 +17,22 @@ namespace words_aspnet.Controllers
         }
 
         // GET words/noun
-        [HttpGet("noun")]
-        public string GetNoun()
+        [HttpPost("noun")]
+        public string Noun()
         {
             return _wordsProvider.Noun;
         }
 
         // GET words/noun
-        [HttpGet("adjective")]
-        public string GetAdjective()
+        [HttpPost("adjective")]
+        public string Adjective()
         {
             return _wordsProvider.Adjective;
         }
 
         // GET words/noun
-        [HttpGet("verb")]
-        public string GetVerb()
+        [HttpPost("verb")]
+        public string Verb()
         {
             return _wordsProvider.Verb;
         }

@@ -1,0 +1,4 @@
+#
+docker volume ls -q | %{docker volume rm $_}
+docker images -q | %{docker rmi $_}
+docker ps -a | %{docker rm -f $_}

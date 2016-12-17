@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace words_aspnet
 {
@@ -14,7 +15,7 @@ namespace words_aspnet
 
         public async Task Invoke(HttpContext context)
         {
-            context.Response.Headers.Add("X-WordsAspnet-Host", System.Environment.MachineName);
+            context.Response.Headers.Add("X-WordsAspNet-Host", System.Environment.MachineName);
             await _next(context);
         }
     }
