@@ -14,9 +14,9 @@ namespace words_aspnet
 
         public WordsProvider()
         {
-            _noun = Nouns[_random.Next(10)];
-            _adjective = Adjectives[_random.Next(10)];
-            _verb = Verbs[_random.Next(10)];
+            _noun = Nouns[_random.Next(Nouns.Length)];
+            _adjective = Adjectives[_random.Next(Adjectives.Length)];
+            _verb = Verbs[_random.Next(Verbs.Length)];
         }
 
         public string Noun
