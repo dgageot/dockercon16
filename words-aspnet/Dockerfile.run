@@ -1,4 +1,6 @@
 FROM microsoft/aspnetcore:1.1.0
+
 WORKDIR /app
-COPY /bin/Debug/netcoreapp1.1/publish .
+COPY . .
+
 ENTRYPOINT ["dotnet", "words-aspnet.dll"]

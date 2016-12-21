@@ -5,8 +5,8 @@ services:
     build: web
     image: dockercon16-aspnet-frontend
     volumes: ["./web/static:/usr/share/nginx/html"]
-    ports: ["8000:80"]
+    ports: ["80:80"]
   words-api:
     build: words-aspnet
-    image: dockercon16-aspnet-backend
+    image: dockercon16-aspnet-backend:default
     # ports: ["5000:80"]

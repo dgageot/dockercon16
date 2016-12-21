@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "words-aspnet", "words-aspnet.xproj", "{E97FDDA2-5B42-4A04-BC97-C2A50810CF93}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "words-aspnet", "words-aspnet\words-aspnet.xproj", "{E97FDDA2-5B42-4A04-BC97-C2A50810CF93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,5 @@
-FROM microsoft/aspnetcore-build
+FROM microsoft/aspnetcore-build:1.1.0-projectjson
+
 WORKDIR /app
 
 COPY project.json .
