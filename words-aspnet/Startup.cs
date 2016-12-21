@@ -27,12 +27,11 @@ namespace words_aspnet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // DI
             services.AddSingleton<IWordsProvider, WordsProvider>();
             
             // Add framework services.
             services.AddMvc();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +42,8 @@ namespace words_aspnet
 
             app.UseMiddleware<HostNameHeaderMiddleware>();
             app.UseMvc();
+
+            app.UseWelcomePage();
         }
     }
 }

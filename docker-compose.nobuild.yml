@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  web:
+    build: web
+    image: dockercon16-aspnet-frontend
+    # volumes: ["./web/static:/usr/share/nginx/html"]
+    ports: ["80:80"]
+  words-api:
+    build: 
+      context: words-aspnet
+      dockerfile: Dockerfile.run
+    image: dockercon16-aspnet-backend
+    # ports: ["5000:5000"]

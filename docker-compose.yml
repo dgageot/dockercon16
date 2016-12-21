@@ -5,11 +5,8 @@ services:
     build: web
     image: dockercon16-aspnet-frontend
     volumes: ["./web/static:/usr/share/nginx/html"]
-    ports: ["80:80"]
-    # environment:
-    #   - "constraint:node==jcoucp0-ucpnode"
-  
+    ports: ["8000:80"]
   words-api:
     build: words-aspnet
     image: dockercon16-aspnet-backend
-    # ports: ["5000:5000"]
+    # ports: ["5000:80"]
