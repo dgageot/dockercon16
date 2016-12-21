@@ -1,0 +1,6 @@
+FROM microsoft/aspnetcore:1.1.0
+
+WORKDIR /app
+COPY . .
+
+ENTRYPOINT ["dotnet", "words-aspnet.dll"]
